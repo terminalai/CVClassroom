@@ -4,7 +4,7 @@ from keras_cv.layers import RandAugment
 
 import numpy as np 
 
-import params 
+from misc import params 
 
 rand_augment = RandAugment([0,255], **params.augment_params) # define augmentation function 
 

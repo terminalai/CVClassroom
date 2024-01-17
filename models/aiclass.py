@@ -3,8 +3,7 @@ from keras.layers import Dense, Conv2D
 from keras.callbacks import LambdaCallback, ModelCheckpoint 
 from keras.optimizers import AdamW 
 
-import utils 
-import params 
+from misc import utils, params 
 
 import os 
 

@@ -1,9 +1,8 @@
 import keras 
 
-import aiclass 
-import dataloader 
-import utils 
-import params 
+import models.aiclass as aiclass 
+import data_generation.dataloader as dataloader 
+from misc import utils, params 
 
 import os 
 
