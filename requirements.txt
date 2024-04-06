@@ -1,3 +1,5 @@
-keras
+keras>3
 keras-cv
+tensorflow 
 numpy
+pandas

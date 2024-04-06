@@ -162,4 +162,5 @@ cython_debug/
 
 
 # more stuff 
-stanford_cars_dataset
+backup 
+testing.py

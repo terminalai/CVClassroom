@@ -1,7 +1,7 @@
 import keras 
 
 import models.aiclass as aiclass 
-import data_generation.dataloader as dataloader 
+import data_generation.stanford_cars_dataloader as stanford_cars_dataloader 
 from misc import utils, params 
 
 import os 
@@ -65,7 +65,7 @@ def init(train_kwargs=default_train_kwargs):
         # create teacher and save at "./classroom_models/iter0teacher"+str(i) 
         teacher = initializer(**init_kwargs, save_checkpoint_dir=save_dir) 
         # train teacher 
-        results = teacher.train(dataloader.x_train, dataloader.y_train, **train_kwargs) 
+        results = teacher.train(stanford_cars_dataloader.x_train, stanford_cars_dataloader.y_train, **train_kwargs) 
 
         # save best results teacher location 
         fout = open(save_dir+"best.txt", 'r') 
@@ -94,7 +94,7 @@ def teach_students(pseudolabels, iterno, train_kwargs=default_train_kwargs, stud
         student = load_model_from_dir(save_dir, technique="last") 
 
         # train student 
-        results = student.train(dataloader.x_train, pseudolabels, **train_kwargs)
+        results = student.train(stanford_cars_dataloader.x_train, pseudolabels, **train_kwargs)
 
         if return_student_results: student_results.append(results) 
 
@@ -118,7 +118,7 @@ def iterate(iterno, technique="best", show_msgs=False):
         teacher = load_model_from_dir(teacher_dir, technique=technique) 
 
         # make data using pseudolabels from teachers 
-        pseudolabels = teacher.sample(dataloader.x_train) 
+        pseudolabels = teacher.sample(stanford_cars_dataloader.x_train) 
 
         del teacher # save memory 
 

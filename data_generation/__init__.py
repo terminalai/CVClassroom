@@ -1,1 +1,1 @@
-from data_generation import dataloader 
+from data_generation.stanford_cars_dataloader import StanfordCarsDataloader 
