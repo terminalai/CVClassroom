@@ -1,3 +1,6 @@
+import sys 
+sys.path.append("../CVClassroom")
+
 import pandas as pd
 import numpy as np
 
@@ -5,7 +8,7 @@ import keras
 from keras.preprocessing.image import load_img, img_to_array
 from keras_cv.layers import RandAugment 
 
-from misc import params 
+import params 
 
 seed = 10
 np.random.seed(seed) 
@@ -18,12 +21,12 @@ rand_augment = RandAugment([0,255], **params.augment_params)
 class StanfordCarsDataloader(keras.utils.Sequence):
 
     # initialize dataframes 
-    trainDF = pd.read_csv('train.csv')
-    testDF = pd.read_csv('test.csv')
+    trainDF = pd.read_csv('stanford_cars_dataset/train.csv')
+    testDF = pd.read_csv('stanford_cars_dataset/test.csv')
 
     # path prefixes
-    train_path_prefix = './cars_train/cars_train/' 
-    test_path_prefix = './cars_test/cars_test/'
+    train_path_prefix = 'stanford_cars_dataset/cars_train/cars_train/' 
+    test_path_prefix = 'stanford_cars_dataset/cars_test/cars_test/'
 
     # other stanford cars specific stuff
     n_classes = 196 
