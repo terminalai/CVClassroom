@@ -18,6 +18,13 @@ This is what the folder should look like after you extract:
 
 
 In the end, this is what the folder should look like: 
-![Image of folder after dataset extraction. It contains two sub-folders called "cars_test" and "cars_train", two .csv files called "test.csv" and "train.csv", and a .mat file called "cars_annos.mat"](<images/final_folder_image.png>) 
+![Image of folder after dataset extraction. It contains two sub-folders called "cars_test" and "cars_train", two .csv files called "test.csv" and "train.csv", and 2 .mat files called "cars_annos.mat" and "cars_test_annos_withlabels (1).mat"](<images/final_folder_image.png>) 
 Note that cars_annos.mat is unnecessary and can be removed. 
+
+
+
+The CSV files of some labels of the dataset were from this link: [https://github.com/BotechEngineering/StanfordCarsDatasetCSV] 
+
+More labels of cars were downloaded (the file called "cars_test_annos_withlabels (1).mat") from this kaggle link: [https://www.kaggle.com/datasets/abdelrahmant11/standford-cars-dataset-meta] 
+
 

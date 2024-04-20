@@ -3,8 +3,9 @@ sys.path.append("../CVClassroom")
 
 import pandas as pd
 import numpy as np
+import scipy.io 
 
-import keras
+import keras.utils 
 from keras.preprocessing.image import load_img, img_to_array
 from keras_cv.layers import RandAugment 
 
@@ -18,11 +19,20 @@ np.random.seed(seed)
 # define augmentation function 
 rand_augment = RandAugment([0,255], **params.augment_params) 
 
+
+# prepare this bcs need to preload 
+testLabels = scipy.io.loadmat('stanford_cars_dataset/cars_test_annos_withlabels (1).mat') 
+
+
 class StanfordCarsDataloader(keras.utils.Sequence):
 
     # initialize dataframes 
     trainDF = pd.read_csv('stanford_cars_dataset/train.csv')
     testDF = pd.read_csv('stanford_cars_dataset/test.csv')
+
+    # since testDF isn't complete, need to add more stuff 
+    testDF['Class'] = [(testLabels['annotations'][0][i][-2][0][0]-1) for i in range(len(testDF)) ]
+
 
     # path prefixes
     train_path_prefix = 'stanford_cars_dataset/cars_train/cars_train/' 
@@ -32,6 +42,7 @@ class StanfordCarsDataloader(keras.utils.Sequence):
     n_classes = 196 
 
     def __init__(self, mode="train", batch_size=20, data_shape=(240,360,3), augment=True, shuffle=True): 
+        assert ((mode=="train") or (mode == 'test')), 'That data loading mode is not available.' 
         self.mode = mode 
         self.batch_size = batch_size 
         self.data_shape = data_shape 
