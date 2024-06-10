@@ -1,0 +1,68 @@
+import keras 
+import models.efficientnet.efficientnet_b0 as efficientnet_b0 
+
+import utils 
+
+import sys
+if 'idlelib.run' in sys.modules: sys.path.pop(1) # fixes an issue with import 
+sys.path.insert(1, '../')
+
+import os
+os.environ['KERAS_BACKEND'] = "tensorflow" 
+
+
+
+default_target_img_shape = (224, 224, 3) 
+
+class EfficientNetModel(): 
+    def __init__(self, save_dir, model_specs='B0', img_shape=default_target_img_shape, noise_type='ltnl', ): 
+        assert model_specs in ['B0'], "Model not available yet" 
+        assert noise_type in [None, 'ltnl'], "Noise type not available yet" 
+
+        try: os.mkdir(save_dir) 
+        except: pass # means it's already made before 
+
+        self.model_specs = model_specs 
+        self.img_shape = img_shape 
+        self.noise_type = noise_type 
+        self.save_dir = save_dir 
+        
+        self.reset() 
+
+
+    def reset(self): 
+        if self.model_specs=='B0': 
+            if self.noise_type == None: 
+                self.model = efficientnet_b0.get_noiseless_model(self.img_shape) 
+            else: 
+                self.model = efficientnet_b0.get_ltnl_model(self.img_shape) 
+        
+        self.trained_already = False 
+    
+
+    def train(self, train_dataloader, valid_dataloader, optimizer='AdamW', 
+              loss=keras.losses.BinaryCrossentropy(from_logits=True), 
+              metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], 
+              num_epochs=12, valid_freq=3, callbacks:list = None, 
+              compile_kwargs={}, **fit_kwargs, ): 
+        
+        assert (not self.trained_already), "Model has already been trained." 
+
+        if callbacks == None: 
+            [ utils.SaveEveryEpochCallback(self.save_dir) ] 
+
+        self.model.compile(optimizer=optimizer, loss=loss, metrics = metrics, **compile_kwargs) 
+
+        self.model.fit(x=train_dataloader, validation_data=valid_dataloader, 
+                       verbose=2, epochs=num_epochs, validation_freq=valid_freq, 
+                       callbacks=callbacks, **fit_kwargs) 
+
+
+        self.trained_already = True 
+
+
+
+
+
+
+

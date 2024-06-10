@@ -1,1 +1,1 @@
-from models import aiclass 
+from models.modelss import EfficientNetModel 
