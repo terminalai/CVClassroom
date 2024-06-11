@@ -36,6 +36,8 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
     trainDF = pd.read_csv('stanford_cars_dataset/train.csv')
     testDF = pd.read_csv('stanford_cars_dataset/test.csv')
 
+    labelDF = pd.read_csv('stanford_cars_dataset/stanford_cars_labels.csv') # NOTE THAT THIS IS 1-INDEXED SO WE NEED TO SUBTRACT 1  
+
     # since testDF isn't complete, need to add more stuff 
     testDF['Class'] = [(testLabels['annotations'][0][i][-2][0][0]-1) for i in range(len(testDF)) ]
 
@@ -46,10 +48,13 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
 
     # other stanford cars specific stuff
     n_classes = 196 
+    n_broad_labels = 16 
+    ns_sub_labels = [14, 10, 14, 13, 14, 14, 15, 12, 15, 12, 11, 11, 11, 11, 9, 10] 
 
     def __init__(self, mode="train", batch_size=20, data_shape=(240,360,3), 
                  augment=True, shuffle=True, 
-                 valid_sampler=default_valid_sampler, **kwargs): 
+                 valid_sampler=default_valid_sampler,
+                 finegrained=True, **kwargs): 
         super().__init__(**kwargs)
 
         assert ((mode=="train") or (mode == 'valid') or (mode == 'test')), 'That data loading mode is not available.' 
@@ -58,7 +63,8 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
         self.data_shape = data_shape 
         self.augment = augment 
         self.shuffle = shuffle 
-        self.valid_sampler = valid_sampler 
+        self.valid_sampler = valid_sampler
+        self.finegrained = finegrained 
 
         # set indices 
         if (self.mode == 'test'): 
@@ -87,7 +93,11 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
 
     def generate_data(self, indices): # generates data given some indices, not the entire thing 
         x = np.empty((self.batch_size, *self.data_shape)) 
-        y = np.empty(self.batch_size, dtype=int) # labels 
+        if self.finegrained:
+            y1 = np.empty(self.batch_size, dtype=int) # broad label 
+            y2 = np.empty(self.batch_size, dtype=int) # sublabel 
+        else:
+            y = np.empty(self.batch_size, dtype=int) # labels 
 
         for i, index in enumerate(indices): # NOTE: NOT self.indices BUT THE PARAMETER 
             if self.mode == "train": 
@@ -96,7 +106,11 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
                     StanfordCarsDataloader.trainDF.image[i],
                     target_size=self.data_shape, interpolation='bilinear'))
 
-                y[i] = StanfordCarsDataloader.trainDF.Class[i] 
+                if self.finegrained:
+                    y1[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.trainDF.Class[i]]['broad_label'] -1 
+                    y2[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.trainDF.Class[i]]['sub_label'] -1 
+                else:
+                    y[i] = StanfordCarsDataloader.trainDF.Class[i] 
             
             elif self.mode == "valid": # take from train path too 
                 x[i,] = img_to_array(load_img(
@@ -104,7 +118,11 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
                     StanfordCarsDataloader.trainDF.image[i],
                     target_size=self.data_shape, interpolation='bilinear'))
 
-                y[i] = StanfordCarsDataloader.trainDF.Class[i] 
+                if self.finegrained:
+                    y1[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.trainDF.Class[i]]['broad_label'] -1 
+                    y2[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.trainDF.Class[i]]['sub_label'] -1 
+                else:
+                    y[i] = StanfordCarsDataloader.trainDF.Class[i] 
 
             elif self.mode == "test": 
                 x[i,] = img_to_array(load_img(
@@ -112,12 +130,20 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
                     StanfordCarsDataloader.testDF.image[i],
                     target_size=self.data_shape, interpolation='bilinear'))
                 
-                y[i] = StanfordCarsDataloader.testDF.Class[i] 
+                if self.finegrained:
+                    y1[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.testDF.Class[i]]['broad_label'] -1 
+                    y2[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.testDF.Class[i]]['sub_label'] -1 
+                else:
+                    y[i] = StanfordCarsDataloader.testDF.Class[i] 
         
         if self.augment: 
             x = rand_augment(x) 
 
-        return x, keras.utils.to_categorical(y, num_classes = StanfordCarsDataloader.n_classes) 
+        if self.finegrained:
+            return x, (keras.utils.to_categorical(y1, num_classes = StanfordCarsDataloader.n_broad_labels), 
+                       keras.utils.to_categorical(y2, num_classes = max(StanfordCarsDataloader.ns_sub_labels))) 
+        else:
+            return x, keras.utils.to_categorical(y, num_classes = StanfordCarsDataloader.n_classes) 
 
 
     def __len__(self): 
