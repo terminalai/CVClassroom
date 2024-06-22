@@ -15,7 +15,7 @@ os.environ['KERAS_BACKEND'] = "tensorflow"
 
 default_target_img_shape = (224, 224, 3) 
 
-class EfficientNetModel(): 
+class EfficientNetModel(): # each expert can be an EfficientNetModel 
     def __init__(self, save_dir, n_classes, model_specs='B0', img_shape=default_target_img_shape, noise_type='ltnl', ): 
         assert model_specs in ['B0'], "Model not available yet" 
         assert noise_type in [None, *LTNL.noisetype_names], "Noise type not available yet" 
