@@ -63,6 +63,8 @@ def add_linear_transform_noise_to(x:tf.Tensor, noise_mat=None, ):
 
 
 class LinearTransformNoiseLayer(keras.layers.Layer): 
+    noisetype_names = ['ltnl', 'linear_transform']
+
     def __init__(self, noise_mat=None, batched=True): 
         super(LinearTransformNoiseLayer, self).__init__() 
         if (noise_mat is not None): assert len(noise_mat.shape)==2, "Noise matrix must be a 2-dimensional matrix" 

@@ -32,11 +32,9 @@ def default_valid_sampler(indices): # NOTE THAT THIS MUST RETURN THEM IN SORTED 
 
 class StanfordCarsDataloader(keras.utils.PyDataset):
 
-    # initialize dataframes 
+    # initialize dataframes for data 
     trainDF = pd.read_csv('stanford_cars_dataset/train.csv')
     testDF = pd.read_csv('stanford_cars_dataset/test.csv')
-
-    labelDF = pd.read_csv('stanford_cars_dataset/stanford_cars_labels.csv') # NOTE THAT THIS IS 1-INDEXED SO WE NEED TO SUBTRACT 1  
 
     # since testDF isn't complete, need to add more stuff 
     testDF['Class'] = [(testLabels['annotations'][0][i][-2][0][0]-1) for i in range(len(testDF)) ]
@@ -46,41 +44,85 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
     train_path_prefix = 'stanford_cars_dataset/cars_train/cars_train/' 
     test_path_prefix = 'stanford_cars_dataset/cars_test/cars_test/'
 
-    # other stanford cars specific stuff
+    # splitting of labels into sublabels 
     n_classes = 196 
     n_broad_labels = 16 
     ns_sub_labels = [14, 10, 14, 13, 14, 14, 15, 12, 15, 12, 11, 11, 11, 11, 9, 10] 
+    labelDF = pd.read_csv('stanford_cars_dataset/stanford_cars_labels.csv') # NOTE THAT THIS IS 1-INDEXED 
+
+    @classmethod 
+    def labels_for_broad_label(broadlabel): # all these are 1-indexed 
+        return list(StanfordCarsDataloader.labelDF[StanfordCarsDataloader.labelDF['broad_label'] == broadlabel]['label']) 
+
+    label_csv_paths = {
+        0: 'stanford_cars_dataset/stanford_cars_labels.csv', 
+    }
+
+    @classmethod 
+    def switch_labelling_method(new_mtd): 
+        csv_path = "" 
+        if type(new_mtd) == int: 
+            assert new_mtd in StanfordCarsDataloader.label_csv_paths.keys(), "Label method does not exist. " 
+            csv_path = StanfordCarsDataloader.label_csv_paths[csv_path] 
+        elif type(new_mtd) == str: 
+            csv_path = new_mtd 
+        else: 
+            raise ValueError("new_mtd must be int (using preset labellings) or str (custom label csv path)!") 
+        
+        # TODO: CHANGE LABELLING METHOD 
 
     def __init__(self, mode="train", batch_size=20, data_shape=(240,360,3), 
-                 augment=True, shuffle=True, 
+                 augment=True, augment_func=rand_augment, shuffle=True, 
                  valid_sampler=default_valid_sampler,
-                 finegrained=True, **kwargs): 
+                 finegrained=True, force_same_shape_sublabel=None, 
+                 broad_label_filter=None, broad_labels_only=False, 
+                 **kwargs): 
         super().__init__(**kwargs)
 
-        assert ((mode=="train") or (mode == 'valid') or (mode == 'test')), 'That data loading mode is not available.' 
+        assert ((mode == "train") or (mode == 'valid') or (mode == 'test')), 'That data loading mode is not available.' 
         self.mode = mode 
         self.batch_size = batch_size 
         self.data_shape = data_shape 
         self.augment = augment 
+        self.augment_func = augment_func 
         self.shuffle = shuffle 
         self.valid_sampler = valid_sampler
         self.finegrained = finegrained 
+        if (force_same_shape_sublabel is None): 
+            self.force_same_shape_sublabel = not (broad_label_filter is None) 
+        else: self.force_same_shape_sublabel = force_same_shape_sublabel 
+        self.broad_label_filter = broad_label_filter 
+        self.broad_labels_only = broad_labels_only 
 
         # set indices 
         if (self.mode == 'test'): 
-            self.indices = np.arange(StanfordCarsDataloader.testDF.shape[0])  
-        elif (self.mode == 'valid'): 
-            self.indices = self.valid_sampler(range(StanfordCarsDataloader.trainDF.shape[0]))
+            if self.broad_label_filter is not None : 
+                self.indices = list(StanfordCarsDataloader.testDF[
+                    StanfordCarsDataloader.testDF['Class'] in StanfordCarsDataloader.labels_for_broad_label(self.broad_label_filter)
+                    ]['Unnamed: 0'] )
+            else: 
+                self.indices = np.arange(StanfordCarsDataloader.testDF.shape[0])  
         else: 
-            valid_indices = self.valid_sampler(range(StanfordCarsDataloader.trainDF.shape[0])) 
-            #print("VALID INDICES:",valid_indices)
-            self.indices = [] 
-            pos = 0 
-            for i in range(StanfordCarsDataloader.trainDF.shape[0]): 
-                if (pos < len(valid_indices)) and (i == valid_indices[pos]): 
-                    pos += 1 
-                else: 
-                    self.indices.append(i) 
+            if self.broad_label_filter is not None : 
+                t_indices = list(StanfordCarsDataloader.trainDF[
+                    StanfordCarsDataloader.trainDF['Class'] in StanfordCarsDataloader.labels_for_broad_label(self.broad_label_filter)
+                    ]['Unnamed: 0'] )
+            else: 
+                t_indices = range(StanfordCarsDataloader.trainDF.shape[0]) 
+            valid_indices = self.valid_sampler(t_indices) 
+
+            #print("VALID INDICES:",valid_indices) 
+
+            if self.mode == 'valid': 
+                self.indices = valid_indices
+            else: 
+                self.indices = [] 
+                pos = 0 
+                for i in range(StanfordCarsDataloader.trainDF.shape[0]): 
+                    if (pos < len(valid_indices)) and (i == valid_indices[pos]): 
+                        pos += 1 
+                    else: 
+                        self.indices.append(i) 
 
 
         self.on_epoch_end() # as initialization 
@@ -95,7 +137,7 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
         x = np.empty((self.batch_size, *self.data_shape)) 
         if self.finegrained:
             y1 = np.empty(self.batch_size, dtype=int) # broad label 
-            y2 = np.empty(self.batch_size, dtype=int) # sublabel 
+            if (not self.broad_labels_only): y2 = np.empty(self.batch_size, dtype=int) # sublabel 
         else:
             y = np.empty(self.batch_size, dtype=int) # labels 
 
@@ -108,7 +150,7 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
 
                 if self.finegrained:
                     y1[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.trainDF.Class[i]]['broad_label'] -1 
-                    y2[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.trainDF.Class[i]]['sub_label'] -1 
+                    if (not self.broad_labels_only): y2[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.trainDF.Class[i]]['sub_label'] -1 
                 else:
                     y[i] = StanfordCarsDataloader.trainDF.Class[i] 
             
@@ -120,7 +162,7 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
 
                 if self.finegrained:
                     y1[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.trainDF.Class[i]]['broad_label'] -1 
-                    y2[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.trainDF.Class[i]]['sub_label'] -1 
+                    if (not self.broad_labels_only): y2[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.trainDF.Class[i]]['sub_label'] -1 
                 else:
                     y[i] = StanfordCarsDataloader.trainDF.Class[i] 
 
@@ -132,16 +174,29 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
                 
                 if self.finegrained:
                     y1[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.testDF.Class[i]]['broad_label'] -1 
-                    y2[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.testDF.Class[i]]['sub_label'] -1 
+                    if (not self.broad_labels_only): y2[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.testDF.Class[i]]['sub_label'] -1 
                 else:
                     y[i] = StanfordCarsDataloader.testDF.Class[i] 
         
         if self.augment: 
-            x = rand_augment(x) 
+            x = self.augment_func(x) 
 
         if self.finegrained:
-            return x, (keras.utils.to_categorical(y1, num_classes = StanfordCarsDataloader.n_broad_labels), 
-                       keras.utils.to_categorical(y2, num_classes = max(StanfordCarsDataloader.ns_sub_labels))) 
+            if (self.broad_labels_only): 
+                return x, keras.utils.to_categorical(y1, num_classes = StanfordCarsDataloader.n_broad_labels) 
+            
+            if self.force_same_shape_sublabel: 
+                if (self.broad_label_filter): 
+                    return x, (keras.utils.to_categorical(y1, num_classes = StanfordCarsDataloader.n_broad_labels), 
+                       keras.utils.to_categorical(y2, num_classes = StanfordCarsDataloader.ns_sub_labels[self.broad_label_filter]) ) 
+                # else 
+                return x, (keras.utils.to_categorical(y1, num_classes = StanfordCarsDataloader.n_broad_labels), 
+                       keras.utils.to_categorical(y2, num_classes = max(StanfordCarsDataloader.ns_sub_labels)) ) 
+            # else 
+            return x, [(keras.utils.to_categorical(y1[idx], num_classes = StanfordCarsDataloader.n_broad_labels), 
+                       keras.utils.to_categorical(y2[idx], num_classes = StanfordCarsDataloader.ns_sub_labels[y1[idx]]) 
+                       ) for idx in range(len(y2))]
+                       
         else:
             return x, keras.utils.to_categorical(y, num_classes = StanfordCarsDataloader.n_classes) 
 

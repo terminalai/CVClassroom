@@ -41,7 +41,7 @@ valid_samplers = utils.get_valid_samplers(k=5)
 default_target_img_shape = (224, 224, 3) 
 
 
-def get_noiseless_model(target_img_shape=default_target_img_shape): 
+def get_noiseless_model(n_classes, target_img_shape=default_target_img_shape): 
     return keras.Sequential([
         keras.layers.Input(target_img_shape),
 
@@ -62,11 +62,11 @@ def get_noiseless_model(target_img_shape=default_target_img_shape):
         keras.layers.Activation(keras.activations.swish), 
         EfficientNetItems.get_pool(), 
         EfficientNetItems.get_dropout(dropout_rate), 
-        EfficientNetItems.get_fc(196), 
+        EfficientNetItems.get_fc(n_classes), 
     
     ])
 
-def get_ltnl_model(target_img_shape=default_target_img_shape): 
+def get_ltnl_model(n_classes, target_img_shape=default_target_img_shape): 
     return keras.Sequential([
         keras.layers.Input(target_img_shape),
 
@@ -97,7 +97,7 @@ def get_ltnl_model(target_img_shape=default_target_img_shape):
         LTNL(), 
         EfficientNetItems.get_pool(), 
         EfficientNetItems.get_dropout(dropout_rate), 
-        EfficientNetItems.get_fc(196), 
+        EfficientNetItems.get_fc(n_classes), 
     ])
 
 
@@ -121,7 +121,7 @@ def train_noiseless_models():
         noiseless_model = get_noiseless_model() 
         #noiseless_model.summary() 
         noiseless_model.compile(optimizer='adam',
-                    loss = keras.losses.BinaryCrossentropy(from_logits=True),
+                    loss = keras.losses.BinaryCrossentropy(),#from_logits=True),
                     metrics = metrics) 
 
         valid_sampler = valid_samplers[vsidx] 
@@ -149,7 +149,7 @@ def train_ltnl_models():
         ltnl_model = get_ltnl_model() 
         #ltnl_model.summary() 
         ltnl_model.compile(optimizer='adam',
-                    loss = keras.losses.BinaryCrossentropy(from_logits=True),
+                    loss = keras.losses.BinaryCrossentropy(),#from_logits=True),
                     metrics = metrics) 
 
         valid_sampler = valid_samplers[vsidx] 
