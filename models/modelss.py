@@ -11,9 +11,42 @@ sys.path.insert(1, '../')
 import os
 os.environ['KERAS_BACKEND'] = "tensorflow" 
 
-
-
 default_target_img_shape = (224, 224, 3) 
+
+
+
+
+class StanfordCarsModel(): 
+    # Base class for stanford cars model, to be inherited from. 
+    # ALL THE BELOW FIELDS AND FUNCTIONS MUST BE IMPLEMENTED! 
+
+    name = "emptymodel" 
+    img_shape = default_target_img_shape 
+
+    @classmethod 
+    def preprocess(img): 
+        return img 
+
+    def get_broad_label_probs(self, img): 
+        pass 
+
+    def get_sub_label_probs(self, img, broad_label): # this can be a Mixture of Experts 
+        pass 
+
+    def predict(self, img): # returns most likely broad and sub labels 
+        pass 
+
+    def train(self, train_dataloader, valid_dataloader, optimizer='AdamW', 
+              loss=keras.losses.BinaryCrossentropy(), # from_logits=False, as SoftMax activation is assumed ( https://stackoverflow.com/questions/41455101/what-is-the-meaning-of-the-word-logits-in-tensorflow ) 
+              metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], 
+              num_epochs=12, valid_freq=3, callbacks:list = None, 
+              compile_kwargs={}, **fit_kwargs, ): 
+        pass 
+
+    
+
+
+
 
 class EfficientNetModel(): # each expert can be an EfficientNetModel 
     def __init__(self, save_dir, n_classes, model_specs='B0', img_shape=default_target_img_shape, noise_type='ltnl', ): 
