@@ -59,7 +59,7 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
     
     @classmethod 
     def broad_sub_labels_to_label(broad_label, sub_label): 
-        return CarConnectionDataloader.labelDF['label'][CarConnectionDataloader.labelDF['broad_label'] == broad_label]['label'][CarConnectionDataloader.labelDF['sub_label'] == sub_label]['label'] 
+        return StanfordCarsDataloader.labelDF['label'][StanfordCarsDataloader.labelDF['broad_label'] == broad_label]['label'][StanfordCarsDataloader.labelDF['sub_label'] == sub_label]['label'] 
 
     label_csv_paths = {
         0: 'stanford_cars_dataset/stanford_cars_labels.csv', 
