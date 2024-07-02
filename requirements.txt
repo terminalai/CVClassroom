@@ -3,3 +3,6 @@ keras-cv
 tensorflow 
 numpy
 pandas
+opendatasets
+torch
+torchvision 

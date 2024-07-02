@@ -9,6 +9,8 @@ stay tuned!
 
 ## Reproducibility notes 
 
+Most files in this project are in keras/tensorflow. 
+
 ### Part 1: Stanford Cars Dataset 
 1. download the zip file of the dataset here: [https://www.kaggle.com/datasets/jessicali9530/stanford-cars-dataset?resource=download] 
 This is what the folder should look like after you extract: 
@@ -35,4 +37,9 @@ Sources of files in the folder:
 1. Download the zip file of the dataset here: [https://www.kaggle.com/datasets/prondeau/the-car-connection-picture-dataset?resource=download] 
 The folder should consist of only .png files 
 Name the folder "imgs", and put the "imgs" folder under the car_connection_dataset folder in this repository. 
+
+
+### Part 3: teacher models 
+For the transfer learning, we need a different structure of the stanford cars dataset. Run download_stanford_cars_dataset.py to download this other structure. 
+
 

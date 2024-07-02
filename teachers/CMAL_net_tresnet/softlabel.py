@@ -169,6 +169,5 @@ def evaluate(net, inputs, targets, use_cuda = torch.cuda.is_available()):
 
     #_, predicted_com = torch.max(outputs_com.data, 1)
 
-# TODO: still need a dataloader... 
 # TODO: make the model available for download? 
 
