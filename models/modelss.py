@@ -16,38 +16,6 @@ default_target_img_shape = (224, 224, 3)
 
 
 
-class StanfordCarsModel(): 
-    # Base class for stanford cars model, to be inherited from. 
-    # ALL THE BELOW FIELDS AND FUNCTIONS MUST BE IMPLEMENTED! 
-
-    name = "emptymodel" 
-    img_shape = default_target_img_shape 
-
-    @classmethod 
-    def preprocess(img): 
-        return img 
-
-    def get_broad_label_probs(self, img): 
-        pass 
-
-    def get_sub_label_probs(self, img, broad_label): # this can be a Mixture of Experts 
-        pass 
-
-    def predict(self, img): # returns most likely broad and sub labels 
-        pass 
-
-    def train(self, train_dataloader, valid_dataloader, optimizer='AdamW', 
-              loss=keras.losses.BinaryCrossentropy(), # from_logits=False, as SoftMax activation is assumed ( https://stackoverflow.com/questions/41455101/what-is-the-meaning-of-the-word-logits-in-tensorflow ) 
-              metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], 
-              num_epochs=12, valid_freq=3, callbacks:list = None, 
-              compile_kwargs={}, **fit_kwargs, ): 
-        pass 
-
-    
-
-
-
-
 class EfficientNetModel(): # each expert can be an EfficientNetModel 
     def __init__(self, save_dir, n_classes, model_specs='B0', img_shape=default_target_img_shape, noise_type='ltnl', ): 
         assert model_specs in ['B0'], "Model not available yet" 
@@ -100,6 +68,79 @@ class EfficientNetModel(): # each expert can be an EfficientNetModel
 
     def predict(self, x, *args, **kwargs): 
         return self.model.predict(x, *args, **kwargs) 
+
+
+
+
+class StanfordCarsModel(): 
+    # Base class for stanford cars model, to be inherited from. 
+    # ALL THE BELOW FIELDS AND FUNCTIONS MUST BE IMPLEMENTED (by default) 
+
+    name = "emptymodel" 
+
+    def __init__(self, img_shape = default_target_img_shape): 
+        self.img_shape = img_shape 
+
+    @classmethod 
+    def preprocess(img): 
+        return img 
+
+    def get_broad_label_probs(self, img): 
+        pass 
+
+    def get_sub_label_probs(self, img, broad_label): # this can be a Mixture of Experts 
+        pass 
+
+    def predict(self, img): # returns most likely broad and sub labels 
+        pass 
+
+    def train(self, train_dataloader, valid_dataloader, optimizer='AdamW', 
+              loss=keras.losses.BinaryCrossentropy(), # from_logits=False, as SoftMax activation is assumed ( https://stackoverflow.com/questions/41455101/what-is-the-meaning-of-the-word-logits-in-tensorflow ) 
+              metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], 
+              num_epochs=12, valid_freq=3, callbacks:list = None, 
+              compile_kwargs={}, **fit_kwargs, ): 
+        pass 
+
+    
+
+
+class StanfordCarsTeacherModel(StanfordCarsModel): 
+    # Base class for teacher models for stanford cars dataset, to be inherited from. 
+    # for both pytorch and keras 
+
+    name = "pytorchteacher" 
+
+    pytorch = True 
+    # IF PyTorch: 
+    # test_trainsform = ... 
+    # this will be used in the torch Dataset or DataLoader 
+
+    # IF Keras: 
+    #@classmethod 
+    #def test_Transform(img): 
+    #   ... 
+    # note that the input is the same format as SCDL 
+    
+    def __init__(self, img_shape = default_target_img_shape): 
+        self.img_shape = img_shape 
+
+    # IMPLEMENT EITHER (preferred): 
+
+    def get_broad_label_probs(self, img): 
+        pass 
+
+    def get_sub_label_probs(self, img, broad_label): # this can be a Mixture of Experts 
+        pass 
+
+    # OR: 
+
+    def predict(self, img): # returns an int for the most likely label (0-195) 
+        pass 
+
+
+
+
+
 
 
 
