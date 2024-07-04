@@ -39,24 +39,26 @@ test_classes, test_c_to_idx = find_test_classes(DATA_DIR_TEST)
 # For data transforms (normalization & data augmentation)
 normalize_stats = ((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
 
-def get_datasets(size=(256, 256)): 
+def get_datasets(size=(256, 256), train_transforms=None, test_transforms=None): 
 
-    train_tfms = tt.Compose([tt.Resize(size),
-                             tt.RandomRotation(0),
-                             tt.ToTensor(),
-                             tt.Normalize(*normalize_stats, inplace = True)])
-    valid_tfms = tt.Compose([tt.Resize(size),
-                            tt.ToTensor(),
-                            tt.Normalize(*normalize_stats)])
+    if train_transforms is None: 
+        train_transforms = tt.Compose([tt.Resize(size),
+                                 tt.RandomRotation(0),
+                                 tt.ToTensor(),
+                                 tt.Normalize(*normalize_stats, inplace = True)])
+    if test_transforms is None: 
+        test_transforms = tt.Compose([tt.Resize(size),
+                                     tt.ToTensor(),
+                                      tt.Normalize(*normalize_stats)])
 
-    train_ds = ImageFolder(DATA_DIR_TRAIN, train_tfms)
-    valid_ds = ImageFolder(DATA_DIR_TEST, valid_tfms)
+    train_ds = ImageFolder(DATA_DIR_TRAIN, train_transforms)
+    valid_ds = ImageFolder(DATA_DIR_TEST, test_transforms)
 
     return train_ds, valid_ds 
 
-def get_dataloaders(size=(256, 256), batch_size = 128): 
+def get_dataloaders(size=(256, 256), batch_size = 128, train_transforms=None, test_transforms=None): 
 
-    train_ds, valid_ds = get_datasets(size) 
+    train_ds, valid_ds = get_datasets(size, train_transforms, test_transforms) 
 
     train_dl = DataLoader(train_ds, batch_size, shuffle=True, num_workers=3, pin_memory=True)
     valid_dl = DataLoader(valid_ds, batch_size*2, num_workers=3, pin_memory=True)
