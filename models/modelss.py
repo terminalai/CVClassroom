@@ -113,13 +113,15 @@ class StanfordCarsTeacherModel(StanfordCarsModel):
     pytorch = True 
     # IF PyTorch: 
     # test_trainsform = ... 
+    # note that this takes in a pillow image, so it must start with transforms.ToTensor() 
     # this will be used in the torch Dataset or DataLoader 
 
     # IF Keras: 
-    #@classmethod 
-    #def test_Transform(img): 
+    #def test_transform(img:PIL.Image): 
+    #   keras_img = keras.utils.img_to_array(img)  
     #   ... 
-    # note that the input is the same format as SCDL 
+    # note that the input is a PIL image, and resizing has to be done on your own 
+    
     
     def __init__(self, img_shape = default_target_img_shape): 
         self.img_shape = img_shape 

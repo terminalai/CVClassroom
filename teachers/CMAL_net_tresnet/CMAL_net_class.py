@@ -154,7 +154,6 @@ class CMALNetTeacher(StanfordCarsTeacherModel):
     ])
 
 
-    @classmethod  
     def map_generate(attention_map, pred, p1, p2):
         batches, feaC, feaH, feaW = attention_map.size()
 
@@ -180,7 +179,6 @@ class CMALNetTeacher(StanfordCarsTeacherModel):
 
         return out_map
     
-    @classmethod 
     def highlight_im(images, attention_map, attention_map2, attention_map3, theta=0.5, padding_ratio=0.1):
         images = images.clone()
         attention_map = attention_map.clone().detach()

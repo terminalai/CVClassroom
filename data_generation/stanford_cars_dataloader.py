@@ -53,19 +53,20 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
     ns_sub_labels = [14, 10, 14, 13, 14, 14, 15, 12, 15, 12, 11, 11, 11, 11, 9, 10] 
     labelDF = pd.read_csv('stanford_cars_dataset/stanford_cars_labels.csv') # NOTE THAT THIS IS 1-INDEXED 
 
-    @classmethod 
-    def labels_for_broad_label(broadlabel): # all these are 1-indexed 
+    def labels_for_broad_label(broadlabel:int): # all these are 1-indexed 
         return list(StanfordCarsDataloader.labelDF[StanfordCarsDataloader.labelDF['broad_label'] == broadlabel]['label']) 
     
-    @classmethod 
-    def broad_sub_labels_to_label(broad_label, sub_label): 
-        return StanfordCarsDataloader.labelDF['label'][StanfordCarsDataloader.labelDF['broad_label'] == broad_label]['label'][StanfordCarsDataloader.labelDF['sub_label'] == sub_label]['label'] 
+    def broad_sub_labels_to_label(broad_label:int, sub_label:int): 
+        return StanfordCarsDataloader.labelDF['label'][ (StanfordCarsDataloader.labelDF['broad_label'] == broad_label) ][ (StanfordCarsDataloader.labelDF['sub_label'] == sub_label) ].iloc[0] 
+    
+    def label_to_broad_sub_labels(label:int): 
+        return StanfordCarsDataloader.labelDF['broad_label'][StanfordCarsDataloader.labelDF['label']==label].iloc[0], StanfordCarsDataloader.labelDF['sub_label'][StanfordCarsDataloader.labelDF['label']==label].iloc[0] 
+        #return StanfordCarsDataloader.labelDF['label'][StanfordCarsDataloader.labelDF['broad_label'] == broad_label]['label'][StanfordCarsDataloader.labelDF['sub_label'] == sub_label]['label'] 
 
     label_csv_paths = {
         0: 'stanford_cars_dataset/stanford_cars_labels.csv', 
     }
 
-    @classmethod 
     def switch_labelling_method(new_mtd): 
         csv_path = "" 
         if type(new_mtd) == int: 
