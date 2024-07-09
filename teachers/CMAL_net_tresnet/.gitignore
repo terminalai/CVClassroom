@@ -1,2 +1,4 @@
-model_97acc.pth
+model.pth
+model_state_dict.pth
 src
+testing.py

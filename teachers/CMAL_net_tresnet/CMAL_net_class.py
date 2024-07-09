@@ -1,11 +1,11 @@
 import sys 
 sys.path.insert(1, sys.path[0]+'/../../')
 
-from data_generation.torch_stanford_cars_dataloader import get_datasets  
+from data_generation.torch_stanford_cars_dataloader import get_dataloaders   
 
 from models import StanfordCarsTeacherModel 
 
-from src.models.tresnet_v2.tresnet_v2 import TResnetL_V2
+from teachers.CMAL_net_tresnet.src.models.tresnet_v2.tresnet_v2 import TResnetL_V2
 
 import torch 
 import torch.nn as nn 
@@ -95,8 +95,10 @@ class Network_Wrapper(nn.Module):
     def forward(self, x):
         x1, x2, x3 = self.Features(x)
 
+        print('x1.shape', x1.shape)
         x1_ = self.conv_block1(x1)
         map1 = x1_.clone().detach()
+        print('x1_.shape', x1_.shape)
         x1_ = self.max_pool1(x1_)
         x1_f = x1_.view(x1_.size(0), -1)
 
@@ -119,6 +121,8 @@ class Network_Wrapper(nn.Module):
 
         return x1_c, x2_c, x3_c, x_c_all, map1, map2, map3
 
+import os 
+import requests 
 
 class CMALNetTeacher(StanfordCarsTeacherModel): 
 
@@ -127,10 +131,10 @@ class CMALNetTeacher(StanfordCarsTeacherModel):
 
 
 
-    def __init__(self, model_params = {'num_classes': 196}, weights_path = "tresnet-l-v2.pth", use_cuda = torch.cuda.is_available()): 
-        model = TResnetL_V2(model_params)
+    def __init__(self, model_params = {'num_classes': 196}, teacher_state_dict_path = "teachers/CMAL_net_tresnet/model_state_dict.pth", use_cuda = torch.cuda.is_available()): 
+        '''model = TResnetL_V2(model_params)
         pretrained_weights = torch.load(weights_path)
-        model.load_state_dict(pretrained_weights['model'])
+        model.load_state_dict(pretrained_weights.load_state_dict())
 
         net_layers = list(model.children())
         net_layers = net_layers[0]
@@ -138,15 +142,37 @@ class CMALNetTeacher(StanfordCarsTeacherModel):
         
         self.net = Network_Wrapper(net_layers, 196)
         if use_cuda: 
-            self.net.to(torch.device('cuda'))
+            self.net.to(torch.device('cuda'))'''
+        model = TResnetL_V2(model_params)
+        weights_url = \
+            'https://miil-public-eu.oss-eu-central-1.aliyuncs.com/model-zoo/tresnet/stanford_cars_tresnet-l-v2_96_27.pth'
+        weights_path = "tresnet-l-v2.pth"
 
+        if not os.path.exists(weights_path):
+            print('downloading weights...')
+            r = requests.get(weights_url)
+            with open(weights_path, "wb") as code:
+                code.write(r.content)
+        pretrained_weights = torch.load(weights_path)
+        model.load_state_dict(pretrained_weights['model'])
+            
+        net_layers = list(model.children())
+        net_layers = net_layers[0]
+        net_layers = list(net_layers.children())
+        
+        self.net = Network_Wrapper(net_layers, 196)
+
+        self.net.load_state_dict(torch.load(teacher_state_dict_path)) 
+        if use_cuda: 
+            self.net.to(torch.device('cuda'))
+    
 
         self.model_params = model_params 
         self.weights_path = weights_path 
 
     
     test_trainsform = transforms.Compose([
-        transforms.Scale((421, 421)),
+        transforms.Resize((421, 421)),
         transforms.RandomCrop(368, padding=8),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
@@ -252,8 +278,14 @@ class CMALNetTeacher(StanfordCarsTeacherModel):
 
 
 if __name__ == "__main__": 
-    teacher = CMALNetTeacher() 
-    trainds, testds = get_datasets(batch_size=2, test_transforms = CMALNetTeacher.test_trainsform) 
-    imgs, ans = trainds[0] 
-    print(teacher.predict(imgs)) 
+    teacher1 = CMALNetTeacher() 
+    teacher2 = CMALNetTeacher() 
+    traindl, testdl = get_dataloaders(batch_size=1, test_transforms = CMALNetTeacher.test_trainsform) 
+    imgs, ans = next(iter(testdl)) 
+    #print(imgs) 
+    #print(ans) 
+    #print(teacher1.net)
+    #teacher1.net.train() 
+    print(teacher1.predict(imgs.clone().detach())) 
+    print(teacher2.predict(imgs.clone().detach())) 
 
