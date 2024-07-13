@@ -36,7 +36,7 @@ class ResNet34Teacher(StanfordCarsTeacherModel):
         self.weights_path = weights_path 
 
     test_tfms = tt.Compose([
-        tt.Resize((256, 256)),
+        tt.Resize((256,256)),
         tt.ToTensor(),
         tt.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
@@ -52,6 +52,24 @@ class ResNet34Teacher(StanfordCarsTeacherModel):
             return [to_device(x,device) for x in data]
         return data.to(device, non_blocking=True)
 
-    def predict(self, img):
+    def get_broad_label_probs(self, img):
+        return super().get_broad_label_probs(img)
+    
+    def get_sub_label_probs(self, img, broad_label): # this can be a mixture of experts
+        return super().get_sub_label_probs(img, broad_label)
+    
+    def predict(self, img): # return an int for the most likely label (0-1)
         self.net.eval()
         device = get_default_device()
+
+        # Convert to a batch of 1
+        xb = to_device(img.unsqueeze(0), device)
+
+        # Get predictions from model
+        yb = self.net(xb)
+
+        # Pick index with highest probability
+        _, preds = torch.max(yb, dim=1)
+
+        # Return class integer label
+        return preds[0].item()
