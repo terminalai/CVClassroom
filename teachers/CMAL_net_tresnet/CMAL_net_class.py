@@ -1,6 +1,9 @@
 import sys 
 sys.path.insert(1, sys.path[0]+'/../../')
 
+import os 
+sys.path.insert(1, os.curdir)
+
 from data_generation.torch_stanford_cars_dataloader import get_dataloaders   
 
 from models import StanfordCarsTeacherModel 
@@ -12,7 +15,7 @@ import torch.nn as nn
 from torch.autograd import Variable 
 from torchvision import transforms 
 
-from basic_conv import BasicConv 
+from .basic_conv import BasicConv 
 
 
 class Features(nn.Module):
@@ -95,10 +98,10 @@ class Network_Wrapper(nn.Module):
     def forward(self, x):
         x1, x2, x3 = self.Features(x)
 
-        print('x1.shape', x1.shape)
+        #print('x1.shape', x1.shape)
         x1_ = self.conv_block1(x1)
         map1 = x1_.clone().detach()
-        print('x1_.shape', x1_.shape)
+        #print('x1_.shape', x1_.shape)
         x1_ = self.max_pool1(x1_)
         x1_f = x1_.view(x1_.size(0), -1)
 
@@ -171,7 +174,7 @@ class CMALNetTeacher(StanfordCarsTeacherModel):
         self.weights_path = weights_path 
 
     
-    test_trainsform = transforms.Compose([
+    test_transform = transforms.Compose([
         transforms.Resize((421, 421)),
         transforms.RandomCrop(368, padding=8),
         transforms.RandomHorizontalFlip(),
@@ -245,47 +248,54 @@ class CMALNetTeacher(StanfordCarsTeacherModel):
 
         return images
 
+    softmax = nn.Softmax() 
 
     def predict(self, inputs, use_cuda = torch.cuda.is_available()): 
         self.net.eval()
-        
-        if use_cuda:
-            device = torch.device("cuda")
-            inputs = inputs.to(device) 
-        inputs = Variable(inputs, volatile=True) 
-        output_1, output_2, output_3, output_concat, map1, map2, map3 = self.net(inputs)
 
-        p1 = self.net.state_dict()['classifier3.1.weight']
-        p2 = self.net.state_dict()['classifier3.4.weight']
-        att_map_3 = CMALNetTeacher.map_generate(map3, output_3, p1, p2)
+        with torch.no_grad(): 
 
-        p1 = self.net.state_dict()['classifier2.1.weight']
-        p2 = self.net.state_dict()['classifier2.4.weight']
-        att_map_2 = CMALNetTeacher.map_generate(map2, output_2, p1, p2)
+            if len(inputs.shape)==3: 
+                inputs = inputs[None,:,:,:] 
+            
+            if use_cuda:
+                device = torch.device("cuda")
+                inputs = inputs.to(device) 
+            inputs = Variable(inputs, volatile=True) 
+            output_1, output_2, output_3, output_concat, map1, map2, map3 = self.net(inputs)
 
-        p1 = self.net.state_dict()['classifier1.1.weight']
-        p2 = self.net.state_dict()['classifier1.4.weight']
-        att_map_1 = CMALNetTeacher.map_generate(map1, output_1, p1, p2)
+            p1 = self.net.state_dict()['classifier3.1.weight']
+            p2 = self.net.state_dict()['classifier3.4.weight']
+            att_map_3 = CMALNetTeacher.map_generate(map3, output_3, p1, p2)
 
-        inputs_ATT = CMALNetTeacher.highlight_im(inputs, att_map_1, att_map_2, att_map_3)
-        output_1_ATT, output_2_ATT, output_3_ATT, output_concat_ATT, _, _, _ = self.net(inputs_ATT)
+            p1 = self.net.state_dict()['classifier2.1.weight']
+            p2 = self.net.state_dict()['classifier2.4.weight']
+            att_map_2 = CMALNetTeacher.map_generate(map2, output_2, p1, p2)
 
-        outputs_com2 = output_1 + output_2 + output_3 + output_concat
-        outputs_com = outputs_com2 + output_1_ATT + output_2_ATT + output_3_ATT + output_concat_ATT
+            p1 = self.net.state_dict()['classifier1.1.weight']
+            p2 = self.net.state_dict()['classifier1.4.weight']
+            att_map_1 = CMALNetTeacher.map_generate(map1, output_1, p1, p2)
 
-        return outputs_com # OUTPUT FORMAT: TODO figure out output format ...? 
+            inputs_ATT = CMALNetTeacher.highlight_im(inputs, att_map_1, att_map_2, att_map_3)
+            output_1_ATT, output_2_ATT, output_3_ATT, output_concat_ATT, _, _, _ = self.net(inputs_ATT)
+
+            outputs_com2 = output_1 + output_2 + output_3 + output_concat
+            outputs_com = outputs_com2 + output_1_ATT + output_2_ATT + output_3_ATT + output_concat_ATT
+
+        return CMALNetTeacher.softmax(outputs_com.cpu()[0]) 
 
 
 
 if __name__ == "__main__": 
     teacher1 = CMALNetTeacher() 
     teacher2 = CMALNetTeacher() 
-    traindl, testdl = get_dataloaders(batch_size=1, test_transforms = CMALNetTeacher.test_trainsform) 
+    traindl, testdl = get_dataloaders(batch_size=1, test_transforms = CMALNetTeacher.test_transform) 
     imgs, ans = next(iter(testdl)) 
     #print(imgs) 
     #print(ans) 
     #print(teacher1.net)
     #teacher1.net.train() 
-    print(teacher1.predict(imgs.clone().detach())) 
-    print(teacher2.predict(imgs.clone().detach())) 
+    print(teacher1.predict(imgs[0:1].clone().detach())) 
+    res2 = teacher2.predict(imgs[0:1].clone().detach()) 
+    print(res2) 
 

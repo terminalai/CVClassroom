@@ -49,24 +49,20 @@ class ResNet34Teacher(StanfordCarsTeacherModel):
         
     def to_device(data, device):
         if isinstance(data,(list,tuple)):
-            return [to_device(x,device) for x in data]
+            return [ResNet34Teacher.to_device(x,device) for x in data]
         return data.to(device, non_blocking=True)
-
-    def get_broad_label_probs(self, img):
-        return super().get_broad_label_probs(img)
-    
-    def get_sub_label_probs(self, img, broad_label): # this can be a mixture of experts
-        return super().get_sub_label_probs(img, broad_label)
     
     def predict(self, img): # return an int for the most likely label (0-1)
         self.net.eval()
-        device = get_default_device()
+        device = ResNet34Teacher.get_default_device()
 
         # Convert to a batch of 1
-        xb = to_device(img.unsqueeze(0), device)
+        xb = ResNet34Teacher.to_device(img.unsqueeze(0), device)
 
         # Get predictions from model
         yb = self.net(xb)
+
+        return yb 
 
         # Pick index with highest probability
         _, preds = torch.max(yb, dim=1)

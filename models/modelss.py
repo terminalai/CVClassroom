@@ -112,7 +112,7 @@ class StanfordCarsTeacherModel(StanfordCarsModel):
 
     pytorch = True 
     # IF PyTorch: 
-    # test_trainsform = ... 
+    # test_transform = ... 
     # note that this takes in a pillow image, so it must start with transforms.ToTensor() 
     # this will be used in the torch Dataset or DataLoader 
 
@@ -136,7 +136,7 @@ class StanfordCarsTeacherModel(StanfordCarsModel):
 
     # OR: 
 
-    def predict(self, img): # returns an int for the most likely label (0-195) 
+    def predict(self, img): # returns an probabilities for each label (0-195) 
         pass 
 
 

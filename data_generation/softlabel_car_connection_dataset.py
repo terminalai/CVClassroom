@@ -2,7 +2,7 @@ import sys
 sys.path.append("../CVClassroom")
 
 import os
-dataset_path = "../car_connection_dataset/" 
+dataset_path = "./car_connection_dataset/" 
 _, dirs = os.walk(dataset_path)
 
 import models 
@@ -24,7 +24,7 @@ def softlabel_with(model:models.StanfordCarsTeacherModel, #img_shape=(224, 224, 
                    sub_conf_threshold=0.9, label_conf_threshold=0.81, labelling_mtd=None): 
     save_path = os.path.join(dataset_path, model.name+"_softlabels.csv") 
     with open(save_path, 'a+') as fout: 
-        fout.write("path,broad_label,sub_label,label\n") 
+        fout.write("path,broad_label,sub_label,label,label_probs\n") 
     
     if labelling_mtd: 
         SCDL.switch_labelling_method(labelling_mtd) 
@@ -43,19 +43,30 @@ def softlabel_with(model:models.StanfordCarsTeacherModel, #img_shape=(224, 224, 
         if (broad_label_probs is None): 
             # implemented predict function instead 
             label_probs = model.predict(img) 
-            likely_label = np.argmax(label_probs) 
+            #print(max(label_probs))
+            likely_label = np.argmax(label_probs).item() 
+            #print("LIKELY LABEL:", likely_label)
+            #print(label_probs.shape)
+            #print(label_probs)
+            #print(label_probs[0])
+            #print(label_probs[1])
             if label_probs[likely_label] < label_conf_threshold: continue 
 
-            likely_broad_label, likely_sub_label = SCDL.label_to_broad_sub_labels(likely_label) 
+            try: 
+                likely_broad_label, likely_sub_label = SCDL.label_to_broad_sub_labels(likely_label+1) # since labels are 1-indexed 
+            except Exception: 
+                print("LIKELY LABEL:", likely_label) 
 
         else: 
-            likely_broad_label = np.argmax(broad_label_probs) 
+            likely_broad_label = np.argmax(broad_label_probs).item() 
             if broad_label_probs[likely_broad_label] < broad_conf_threshold: continue 
             
             sub_label_probs = model.get_sub_label_probs(img, likely_broad_label) 
-            likely_sub_label = np.argmax(sub_label_probs) 
+            likely_sub_label = np.argmax(sub_label_probs).item() 
             if sub_label_probs[likely_sub_label] < sub_conf_threshold: continue 
 
+            likely_broad_label += 1 # 1-indexed labels 
+            likely_sub_label += 1 
             likely_label = SCDL.broad_sub_labels_to_label(likely_broad_label, likely_sub_label)
 
         # save labels 
@@ -67,9 +78,13 @@ def softlabel_with(model:models.StanfordCarsTeacherModel, #img_shape=(224, 224, 
             fout.write(str(likely_sub_label)) 
             fout.write(',') 
             fout.write(str(likely_label)) 
+            fout.write(',') 
+            fout.write('"'+str(label_probs.tolist())+'"')
             fout.write('\n') 
 
 
 
-
+if __name__=='__main__': 
+    from teachers.CMAL_net_tresnet.CMAL_net_class import CMALNetTeacher 
+    softlabel_with(CMALNetTeacher(), augment=False) 
 
