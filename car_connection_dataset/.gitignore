@@ -1,3 +1,4 @@
 imgs
 test_softlabels.csv
 cmalnet_softlabels.csv
+resnet34_softlabels.csv 

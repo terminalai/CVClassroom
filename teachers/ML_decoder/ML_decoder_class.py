@@ -1,3 +1,5 @@
+model_path = 'teachers/ML_decoder/tresnet_l_stanford_card_96.41.pth'
+
 import sys 
 sys.path.insert(1, sys.path[0]+'/../../')
 
@@ -8,9 +10,32 @@ import numpy as np
 
 from src_files.helper_functions.bn_fusion import fuse_bn_recursively 
 from src_files.models.tresnet.tresnet import InplacABN_to_ABN, TResnetL 
+from src_files.models.utils import create_model 
 from models import StanfordCarsTeacherModel 
 
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu') 
+
+class FakeArgs(): 
+    def __init__(self): 
+        pass 
+    
+    def __getattribute__(self, name: str):
+        if name=='attribs': 
+            return {
+                'num_classes': 196, 
+                'model_name': 'tresnet_l', 
+                'use_ml_decoder': 1, 
+                'num_of_groups': 1, 
+                'decoder_embedding': 768, 
+                'zsl': 0, 
+                'model_path': model_path, 
+            }
+        return self.attribs[name] 
+    
+    def __getitem__(self, key): 
+        print("GETTING", key) 
+        if (key in self.attribs): 
+            return self.__getattribute__(key) 
 
 
 class MLDecoderModel(StanfordCarsTeacherModel): 
@@ -27,9 +52,9 @@ class MLDecoderModel(StanfordCarsTeacherModel):
     
     
     def __init__(self): 
-        self.model = TResnetL({'num_classes':196}) 
+        self.model = create_model(FakeArgs(), load_head=True) 
 
-        self.state = torch.load('tresnet_l_stanford_card_96.41.pth', map_location='cpu') 
+        self.state = torch.load(model_path, map_location='cpu') 
         self.model.load_state_dict(self.state['model'], strict=True)
         # eliminate BN for faster inference 
         model = model.cpu() 
