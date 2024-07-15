@@ -85,6 +85,9 @@ def softlabel_with(model:models.StanfordCarsTeacherModel, #img_shape=(224, 224, 
 
 
 if __name__=='__main__': 
-    from teachers.CMAL_net_tresnet.CMAL_net_class import CMALNetTeacher 
-    softlabel_with(CMALNetTeacher(), augment=False) 
+    #from teachers.CMAL_net_tresnet.CMAL_net_class import CMALNetTeacher 
+    #softlabel_with(CMALNetTeacher(), augment=False) 
+
+    from teachers.resnet_34.resnet_34_class import ResNet34Teacher 
+    softlabel_with(ResNet34Teacher(), augment=False)
 
