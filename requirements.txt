@@ -6,3 +6,4 @@ pandas
 opendatasets
 torch
 torchvision 
+fastai 

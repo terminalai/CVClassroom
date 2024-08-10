@@ -1,15 +1,12 @@
-import numpy as np
-import pandas as pd
-import os
-import seaborn as sns
+# uncommenting the commented libraries will require new requirements in requirements.txt 
+
+#import seaborn as sns
 from fastai.vision.all import *
 from fastai.metrics import error_rate
-from sklearn.metrics import precision_recall_fscore_support, confusion_matrix
+#from sklearn.metrics import precision_recall_fscore_support, confusion_matrix
 from glob import iglob
-from IPython.core.display import Image, display
-import cv2
-import time
-from pathlib import Path
+#import cv2
+#from pathlib import Path
 from models import StanfordCarsTeacherModel
 
 class Resnet34FastaiModel(StanfordCarsTeacherModel): 
@@ -23,17 +20,8 @@ class Resnet34FastaiModel(StanfordCarsTeacherModel):
     def __init__(self, teacher_path = "teachers/resnet_34_fastai/ResNet34_phase6.h5.pth"): 
         learn = learn.load(teacher_path)
 
-    """
-    # IMPLEMENT EITHER (preferred): 
-
-    def get_broad_label_probs(self, img): 
-        pass 
-
-    def get_sub_label_probs(self, img, broad_label): # this can be a Mixture of Experts 
-        pass 
-
-    # OR: 
-    """
+    def test_transform(img): 
+        return img 
 
     # predict functions return in the form: (name of vehicle, label index (as a tensor), list of probabilities)
     # predict functions require path of the img, idk how to make it such that it accepts an 2d array of values (may be a good or bad thing)
