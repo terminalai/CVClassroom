@@ -1,3 +1,5 @@
+# TODO: OPTIMIZE THIS by allowing batch predict 
+
 import sys 
 sys.path.append("../CVClassroom")
 
