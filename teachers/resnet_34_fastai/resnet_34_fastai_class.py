@@ -1,13 +1,8 @@
-# uncommenting the commented libraries will require new requirements in requirements.txt 
-
-#import seaborn as sns
 from fastai.vision.all import *
-from fastai.metrics import error_rate
-#from sklearn.metrics import precision_recall_fscore_support, confusion_matrix
-from glob import iglob
-#import cv2
-#from pathlib import Path
 from models import StanfordCarsTeacherModel
+from keras.preprocessing.image import save_img
+from PIL import Image
+from tempfile import NamedTemporaryFile
 
 class Resnet34FastaiModel(StanfordCarsTeacherModel): 
     # Base class for teacher models for stanford cars dataset, to be inherited from. 
@@ -35,3 +30,16 @@ class Resnet34FastaiModel(StanfordCarsTeacherModel):
     def predict(self, img_path): 
         pred = self.learn.predict(img_path)
         return pred
+    
+    def predict(self, img_as_np_array): # takes in image as np array
+        image = Image.fromarray(img_as_np_array)
+
+        with NamedTemporaryFile(suffix=".jpg") as temp_file:
+            image.save(temp_file.name)
+            pred = self.learn.predict(temp_file.name)
+        
+        return pred
+    
+    # will try to implement broad and sub labels
+            
+
