@@ -86,10 +86,54 @@ def softlabel_with(model:models.StanfordCarsTeacherModel, #img_shape=(224, 224, 
 
 
 
+def softlabel_with_using_filename(model:models.StanfordCarsTeacherModel, #img_shape=(224, 224, 3), 
+                   augment=True, augment_func=rand_augment, broad_conf_threshold=0.9, 
+                   sub_conf_threshold=0.9, label_conf_threshold=0.81, labelling_mtd=None): 
+    save_path = os.path.join(dataset_path, model.name+"_softlabels.csv") 
+    with open(save_path, 'a+') as fout: 
+        fout.write("path,broad_label,sub_label,label,label_probs\n") 
+    
+    if labelling_mtd: 
+        SCDL.switch_labelling_method(labelling_mtd) 
+
+    for name in dirs[2]:
+        img_path = os.path.join(dataset_path, 'imgs', name) 
+
+        # implemented predict function instead 
+        label_probs = model.predict(img_path) 
+
+        likely_label = np.argmax(label_probs).item() 
+
+        if label_probs[likely_label] < label_conf_threshold: continue 
+
+        try: 
+            likely_broad_label, likely_sub_label = SCDL.label_to_broad_sub_labels(likely_label+1) # since labels are 1-indexed 
+        except Exception: 
+            print("LIKELY LABEL:", likely_label) 
+
+
+        # save labels 
+        with open(save_path, 'a+') as fout: 
+            fout.write(str(img_path)) 
+            fout.write(',') 
+            fout.write(str(likely_broad_label)) 
+            fout.write(',') 
+            fout.write(str(likely_sub_label)) 
+            fout.write(',') 
+            fout.write(str(likely_label)) 
+            fout.write(',') 
+            fout.write('"'+str(label_probs.tolist())+'"')
+            fout.write('\n') 
+
+
+
 if __name__=='__main__': 
     #from teachers.CMAL_net_tresnet.CMAL_net_class import CMALNetTeacher 
     #softlabel_with(CMALNetTeacher(), augment=False) 
 
-    from teachers.resnet_34.resnet_34_class import ResNet34Teacher 
-    softlabel_with(ResNet34Teacher(), augment=False)
+    #from teachers.resnet_34.resnet_34_class import ResNet34Teacher 
+    #softlabel_with(ResNet34Teacher(), augment=False)
+
+    from teachers.resnet_34_fastai.resnet_34_fastai_class import Resnet34FastaiModel 
+    softlabel_with_using_filename(Resnet34FastaiModel())
 

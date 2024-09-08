@@ -13,7 +13,8 @@ class Resnet34FastaiModel(StanfordCarsTeacherModel):
        
     
     def __init__(self, teacher_path = "teachers/resnet_34_fastai/ResNet34_phase6.h5.pth"): 
-        learn = learn.load(teacher_path)
+        #learn = cnn_learner( put your parameters here ) 
+        self.model = learn.load(teacher_path)
 
     def test_transform(img): # input: pillow image 
         return img 
@@ -29,11 +30,14 @@ class Resnet34FastaiModel(StanfordCarsTeacherModel):
 
         with NamedTemporaryFile(suffix=".jpg") as temp_file:
             image.save(temp_file.name)
-            pred = self.learn.predict(temp_file.name)
+            pred = self.model.predict(temp_file.name)
         
         if return_all: 
             return pred 
         
         return pred[2] 
+
+    def predict_from_filename(self, filename): 
+        return self.learn.predict(filename)[2] 
             
 
