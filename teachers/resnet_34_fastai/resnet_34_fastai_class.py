@@ -13,8 +13,8 @@ class Resnet34FastaiModel(StanfordCarsTeacherModel):
        
     
     def __init__(self, teacher_path = "teachers/resnet_34_fastai/ResNet34_phase6.h5.pth"): 
-        #learn = cnn_learner( put your parameters here ) 
-        self.model = learn.load(teacher_path)
+        
+        self.model = load_learner(teacher_path)
 
     def test_transform(img): # input: pillow image 
         return img 
