@@ -143,6 +143,34 @@ class StanfordCarsTeacherModel(StanfordCarsModel):
 
 
 
+class StanfordCarsGatingModel(StanfordCarsModel): 
+    # Base class for teacher models for stanford cars dataset, to be inherited from. 
+    # for both pytorch and keras 
+
+    name = "gatingmodel" 
+
+    pytorch = True 
+    # IF PyTorch: 
+    # test_transform = ... 
+    # note that this takes in a pillow image, so it must start with transforms.ToTensor() 
+    # this will be used in the torch Dataset or DataLoader 
+
+    # IF Keras: 
+    #def test_transform(img:PIL.Image): 
+    #   keras_img = keras.utils.img_to_array(img)  
+    #   ... 
+    # note that the input is a PIL image, and resizing has to be done on your own 
+    
+    
+    def __init__(self, img_shape = default_target_img_shape): 
+        self.img_shape = img_shape 
+
+
+    # GET BROAD LABEL
+
+    def broad_label_probs(self, img): # returns an probabilities for each broad label 
+        pass 
+
 
 
 
