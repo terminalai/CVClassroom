@@ -12,7 +12,7 @@ class Resnet34FastaiModel(StanfordCarsTeacherModel):
     pytorch = False 
        
     
-    def __init__(self, teacher_path = "teachers/resnet_34_fastai/ResNet34_phase6.h5.pth"): 
+    def __init__(self, teacher_path = "teachers/resnet_34_fastai/resnet_34_fastai_model.pth"): 
         
         self.model = load_learner(teacher_path)
 
