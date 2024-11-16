@@ -1,3 +1,4 @@
+# NOTE: RUNNING THIS ML DECODER REQUIRES PYTORCH VERSION 1.7
 model_path = 'teachers/ML_decoder/tresnet_l_stanford_card_96.41.pth'
 
 import sys 
@@ -25,7 +26,7 @@ class FakeArgs():
                 'num_classes': 196, 
                 'model_name': 'tresnet_l', 
                 'use_ml_decoder': 1, 
-                'num_of_groups': 1, 
+                'num_of_groups': 100, 
                 'decoder_embedding': 768, 
                 'zsl': 0, 
                 'model_path': model_path, 
@@ -46,7 +47,7 @@ class MLDecoderModel(StanfordCarsTeacherModel):
 
     pytorch = True 
 
-    test_transform = transforms.Compose([]) #transforms.Compose([transforms.ToTensor(), transforms.Resize((384, 384))]) # TODO 
+    test_transform = transforms.Compose([transforms.ToTensor(), transforms.Resize((384, 384))]) 
     # note that this takes in a pillow image, so it must start with transforms.ToTensor() 
     # this will be used in the torch Dataset or DataLoader 
     
@@ -57,18 +58,20 @@ class MLDecoderModel(StanfordCarsTeacherModel):
         self.state = torch.load(model_path, map_location='cpu') 
         self.model.load_state_dict(self.state['model'], strict=True)
         # eliminate BN for faster inference 
-        model = model.cpu() 
-        model = InplacABN_to_ABN(model) 
-        model = fuse_bn_recursively(model) 
-        model = model.cuda().half().eval() 
+        self.model = self.model.cpu() 
+        self.model = InplacABN_to_ABN(self.model) 
+        self.model = fuse_bn_recursively(self.model) 
+        self.model = self.model.to(device).half().eval() 
     
 
 
-    def predict(self, img): # returns an probabilities for each label (0-195) 
-        im_resize = img.resize((384, 384))
-        np_img = np.array(im_resize, dtype=np.uint8)
-        tensor_img = torch.from_numpy(np_img).permute(2, 0, 1).float() / 255.0  # HWC to CHW
-        tensor_batch = torch.unsqueeze(tensor_img, 0).cuda().half() # float16 inference
+    def predict(self, tensor_img): # returns an probabilities for each label (0-195) 
+        #im_resize = img.resize((384, 384))
+        #np_img = np.array(im_resize, dtype=np.uint8)
+        #tensor_img = torch.from_numpy(np_img).permute(2, 0, 1).float() / 255.0  # HWC to CHW
+        #tensor_batch = torch.unsqueeze(tensor_img, 0).cuda().half() # float16 inference
+        #print(tensor_batch.shape)
+        tensor_batch = tensor_img.to(device).half() 
         output = torch.squeeze(torch.sigmoid(self.model(tensor_batch)))
         np_output = output.cpu().detach().numpy()
 

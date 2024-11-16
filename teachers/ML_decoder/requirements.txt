@@ -1,1 +1,6 @@
+torch==1.13.1
+torchvision==0.14.1
+torchaudio==0.7.2 
 git+https://github.com/mapillary/inplace_abn.git@v1.0.11
+pycocotools
+randaugment
