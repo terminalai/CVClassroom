@@ -2,6 +2,7 @@ import numpy as np
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import os
 from PIL import Image
+import cv2
 
 # Gaussian noise: Adding a random normal distribution to the image's intensity values
 def add_gaussian_noise(img):
@@ -19,6 +20,17 @@ def add_gaussian_noise(img):
 
 # Apparently there is already a Gaussian noise layer in keras
 import tensorflow.keras.layers import GaussianNoise
+
+def add_gaussian_blur(domain=2.1, mean=0.1, variance=0.2):
+    # Gettting Gaussian blur kernel
+    X = np.arange(-domain+mean, domain+mean, variance)
+    Y = np.arange(-domain+mean, domain+mean, variance)
+    X,Y = np.meshgrid(X,Y)
+    R = np.sqrt(X**2+Y**2)
+    kernel = ((1. / np.sqrt(2 * np.pi)) * np.exp(-.5*R**2)) # default return 21x21 kernel of gaussian blur filter
+    return cv2.filter2D(img, -1, kernel, borderType=cv2.BORDER_CONSTANT)
+
+    
 
 # Simple image augmentation
 def add_augmentation(img, save_to_dir='test_folder', save_prefix='aug', save_format='png', img_size=128):
