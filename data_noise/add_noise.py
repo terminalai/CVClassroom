@@ -17,6 +17,9 @@ def add_gaussian_noise(img):
     # Clip pixel value to 255
     return np.clip(img_noised,0,255).astype(np.uint8)
 
+# Apparently there is already a Gaussian noise layer in keras
+import tensorflow.keras.layers import GaussianNoise
+
 # Simple image augmentation
 def add_augmentation(img, save_to_dir='test_folder', save_prefix='aug', save_format='png', img_size=128):
     augmented = []
