@@ -24,7 +24,7 @@ rand_augment = RandAugment([0,255], **params.augment_params)
 def softlabel_with(model:models.StanfordCarsTeacherModel, #img_shape=(224, 224, 3), 
                    augment=True, augment_func=rand_augment, broad_conf_threshold=0.9, 
                    sub_conf_threshold=0.9, label_conf_threshold=0.81, labelling_mtd=None): 
-    save_path = os.path.join(dataset_path, model.name+"_softlabels.csv") 
+    save_path = os.path.join(dataset_path, model.name+"_softlabels_{}.csv".format(str(label_conf_threshold).replace('.',''))) 
     with open(save_path, 'a+') as fout: 
         fout.write("path,broad_label,sub_label,label,label_probs\n") 
     
@@ -89,7 +89,7 @@ def softlabel_with(model:models.StanfordCarsTeacherModel, #img_shape=(224, 224, 
 def softlabel_with_using_filename(model:models.StanfordCarsTeacherModel, #img_shape=(224, 224, 3), 
                    augment=True, augment_func=rand_augment, broad_conf_threshold=0.9, 
                    sub_conf_threshold=0.9, label_conf_threshold=0.81, labelling_mtd=None): 
-    save_path = os.path.join(dataset_path, model.name+"_softlabels.csv") 
+    save_path = os.path.join(dataset_path, model.name+"_softlabels_{}.csv".format(str(label_conf_threshold).replace('.',''))) 
     with open(save_path, 'a+') as fout: 
         fout.write("path,broad_label,sub_label,label,label_probs\n") 
     
@@ -99,8 +99,8 @@ def softlabel_with_using_filename(model:models.StanfordCarsTeacherModel, #img_sh
     for name in dirs[2]:
         img_path = os.path.join(dataset_path, 'imgs', name) 
 
-        # implemented predict function instead 
-        label_probs = model.predict(img_path) 
+        # implemented predict_from_filename function instead 
+        label_probs = model.predict_from_filename(img_path) 
 
         likely_label = np.argmax(label_probs).item() 
 
@@ -128,12 +128,18 @@ def softlabel_with_using_filename(model:models.StanfordCarsTeacherModel, #img_sh
 
 
 if __name__=='__main__': 
-    #from teachers.CMAL_net_tresnet.CMAL_net_class import CMALNetTeacher 
+    from teachers.CMAL_net_tresnet.CMAL_net_class import CMALNetTeacher 
     #softlabel_with(CMALNetTeacher(), augment=False) 
+    softlabel_with(CMALNetTeacher(), augment=False, broad_conf_threshold=0.0, sub_conf_threshold=0.0, label_conf_threshold=0.0) 
 
-    #from teachers.resnet_34.resnet_34_class import ResNet34Teacher 
+    from teachers.resnet_34.resnet_34_class import ResNet34Teacher 
     #softlabel_with(ResNet34Teacher(), augment=False)
+    softlabel_with(ResNet34Teacher(), augment=False, broad_conf_threshold=0.0, sub_conf_threshold=0.0, label_conf_threshold=0.0)
+
 
     from teachers.resnet_34_fastai.resnet_34_fastai_class import Resnet34FastaiModel 
-    softlabel_with_using_filename(Resnet34FastaiModel())
+    #softlabel_with_using_filename(Resnet34FastaiModel())
+    #softlabel_with_using_filename(Resnet34FastaiModel(), label_conf_threshold=0.6)
+    #softlabel_with_using_filename(Resnet34FastaiModel(), label_conf_threshold=0.4)
+    softlabel_with_using_filename(Resnet34FastaiModel(), label_conf_threshold=0.0)
 

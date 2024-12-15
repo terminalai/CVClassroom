@@ -1,3 +1,6 @@
+import sys 
+sys.path.append("../CVClassroom")
+
 from fastai.vision.all import *
 from models import StanfordCarsTeacherModel
 #from keras.preprocessing.image import save_img
@@ -38,6 +41,21 @@ class Resnet34FastaiModel(StanfordCarsTeacherModel):
         return pred[2] 
 
     def predict_from_filename(self, filename): 
-        return self.learn.predict(filename)[2] 
+        return self.model.predict(filename)[2] 
             
+
+if __name__ == "__main__": 
+    from data_generation.torch_stanford_cars_dataloader import get_dataloaders  
+
+    teacher1 = Resnet34FastaiModel() 
+    teacher2 = Resnet34FastaiModel() 
+    traindl, testdl = get_dataloaders(batch_size=1, test_transforms = Resnet34FastaiModel.test_transform) 
+    imgs, ans = next(iter(testdl)) 
+    #print(imgs) 
+    #print(ans) 
+    #print(teacher1.net)
+    #teacher1.net.train() 
+    print(teacher1.predict(imgs[0:1].clone().detach())) 
+    res2 = teacher2.predict(imgs[0:1].clone().detach()) 
+    print(res2) 
 

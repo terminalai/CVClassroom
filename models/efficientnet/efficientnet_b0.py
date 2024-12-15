@@ -12,7 +12,7 @@ import keras
 import numpy as np 
 
 from data_generation import StanfordCarsDataloader as SCDL
-from noise_layers import LinearTransformNoiseLayer as LTNL 
+from model_noise import LinearTransformNoiseLayer as LTNL 
 from models.efficientnet.efficientnet_items import * 
 
 import utils 

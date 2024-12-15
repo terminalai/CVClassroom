@@ -1,6 +1,6 @@
 import keras 
 import models.efficientnet.efficientnet_b0 as efficientnet_b0 
-from noise_layers import LinearTransformNoiseLayer as LTNL 
+from model_noise import LinearTransformNoiseLayer as LTNL 
 
 import utils 
 

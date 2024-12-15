@@ -1,4 +1,10 @@
 imgs
 test_softlabels.csv
-cmalnet_softlabels.csv
-resnet34_softlabels.csv 
+cmalnet_softlabels_081.csv
+cmalnet_softlabels_00.csv
+resnet34_softlabels_081.csv 
+resnet34_softlabels_00.csv 
+resnet34fastai_softlabels_081.csv 
+resnet34fastai_softlabels_06.csv 
+resnet34fastai_softlabels_04.csv 
+resnet34fastai_softlabels_00.csv 
