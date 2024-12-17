@@ -3,6 +3,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import os
 from PIL import Image
 import cv2
+import io 
 
 # Gaussian noise: Adding a random normal distribution to the image's intensity values
 def add_gaussian_noise(img):
@@ -18,19 +19,36 @@ def add_gaussian_noise(img):
     # Clip pixel value to 255
     return np.clip(img_noised,0,255).astype(np.uint8)
 
-# Apparently there is already a Gaussian noise layer in keras
-import tensorflow.keras.layers import GaussianNoise
 
-def add_gaussian_blur(domain=2.1, mean=0.1, variance=0.2):
-    # Gettting Gaussian blur kernel
-    X = np.arange(-domain+mean, domain+mean, variance)
-    Y = np.arange(-domain+mean, domain+mean, variance)
-    X,Y = np.meshgrid(X,Y)
-    R = np.sqrt(X**2+Y**2)
-    kernel = ((1. / np.sqrt(2 * np.pi)) * np.exp(-.5*R**2)) # default return 21x21 kernel of gaussian blur filter
-    return cv2.filter2D(img, -1, kernel, borderType=cv2.BORDER_CONSTANT)
 
+def gkern(l=5, sig=1.):
+    """\
+    creates gaussian kernel with side length `l` and a sigma of `sig`
+    credits: https://stackoverflow.com/questions/29731726/how-to-calculate-a-gaussian-kernel-matrix-efficiently-in-numpy 
+    """
+    ax = np.linspace(-(l - 1) / 2., (l - 1) / 2., l)
+    gauss = np.exp(-0.5 * np.square(ax) / np.square(sig))
+    kernel = np.outer(gauss, gauss)
+    return kernel / np.sum(kernel)
+
+gaussian_kernels = {}#{(21, 1.0): gkern(21, 1.0)}
+
+# input/output format: cv2 image 
+def cv2_add_gaussian_blur(img, l=21, std=1.0): 
+    if (l, std) not in gaussian_kernels.keys(): 
+        gaussian_kernels[(l,std)] = gkern(l,std) 
+    return cv2.filter2D(src=img, ddepth=-1, kernel = gaussian_kernels[(l, std)])
+
+# input/ouptut format: PIL image 
+def add_gaussian_blur(img, l=21, std=1.0): 
+    if (l, std) not in gaussian_kernels.keys(): 
+        gaussian_kernels[(l,std)] = gkern(l,std) 
     
+    cv2_img = np.array(img)
+    return Image.fromarray(np.array(cv2.filter2D(src=cv2_img, ddepth=-1, kernel = gaussian_kernels[(l, std)]))) 
+# we arent using PIL's ImageFilter because it's kernel sizes aren't very flexible 
+
+
 
 # Simple image augmentation
 def add_augmentation(img, save_to_dir='test_folder', save_prefix='aug', save_format='png', img_size=128):
@@ -46,7 +64,7 @@ def add_augmentation(img, save_to_dir='test_folder', save_prefix='aug', save_for
     x = img.reshape((1,)+img.shape)
     i=0
     for batch in datagen.flow(x, batch_size=16,
-                                save_to_dir=save_dir,
+                                #save_to_dir=save_dir,
                                 save_prefix=save_prefix,
                                 save_format=save_format):
         i+=1
