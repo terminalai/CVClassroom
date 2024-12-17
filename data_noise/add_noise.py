@@ -3,7 +3,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import os
 from PIL import Image
 import cv2
-import io 
+import tempfile 
 
 # Gaussian noise: Adding a random normal distribution to the image's intensity values
 def add_gaussian_noise(img):
@@ -51,7 +51,7 @@ def add_gaussian_blur(img, l=21, std=1.0):
 
 
 # Simple image augmentation
-def add_augmentation(img, save_to_dir='test_folder', save_prefix='aug', save_format='png', img_size=128):
+def add_augmentation(img, img_size=128):
     augmented = []
     datagen = ImageDataGenerator(
         rotation_range=45, # Rotation
@@ -62,22 +62,27 @@ def add_augmentation(img, save_to_dir='test_folder', save_prefix='aug', save_for
         horizontal_flip=True,
         fill_mode='wrap', cval=125)
     x = img.reshape((1,)+img.shape)
-    i=0
-    for batch in datagen.flow(x, batch_size=16,
-                                #save_to_dir=save_dir,
-                                save_prefix=save_prefix,
-                                save_format=save_format):
-        i+=1
-        if i>20:
-            break
-    img_dir = save_to_dir + '/'
-    imgs = os.listdir(img_dir)
-    # Save the images to numpy list
-    for i, img_name in enumerate(imgs):
-        if img_name.split('.')[1] == 'png':
-            img = io.imread(img_dir+img_name)
-            img = Image.fromarray(img,'RGB')
-            img = img.resize((img_size,img_size))
-            augmented.append(np.array(img))
+
+
+    with tempfile.TemporaryDirectory() as tmpdir: 
+        i=0
+        for batch in datagen.flow(x, batch_size=16,
+                                    save_to_dir=tmpdir,
+                                    save_prefix='aug',
+                                    save_format='png'):
+            i+=1
+            if i>20:
+                break
+        
+        img_dir = tmpdir + '/'
+        imgs = os.listdir(img_dir)
+        # Save the images to numpy list
+        for i, img_name in enumerate(imgs):
+            if img_name.split('.')[1] == 'png':
+                img = cv2.imread(img_dir+img_name)
+                img = Image.fromarray(img,'RGB')
+                img = img.resize((img_size,img_size))
+                augmented.append(np.array(img))
+    
     # Return a larger numpy array of the arrays of images
     return np.array(augmented)
