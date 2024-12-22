@@ -172,9 +172,25 @@ class StanfordCarsGatingModel(StanfordCarsModel):
         pass 
 
 
+class StanfordCarsStudentModel(StanfordCarsModel):
 
+    name = "studentmodel"
 
+    pytorch = True
 
+    # Each student will be an expert for the class that is defined in its initialisation parameter
+    # Should it be an int or str?
+    def __init__(self, expert_class, img_shape = default_target_img_shape): 
+        self.img_shape = img_shape 
+        self.expert_class = expert_class
+        # self.name = self.name + " " + str(expert_class) # is this necessary?
 
+    def train(self, train_dataloader, valid_dataloader, optimizer='AdamW', 
+              loss=keras.losses.BinaryCrossentropy(), # from_logits=False, as SoftMax activation is assumed ( https://stackoverflow.com/questions/41455101/what-is-the-meaning-of-the-word-logits-in-tensorflow ) 
+              metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], 
+              num_epochs=12, valid_freq=3, callbacks:list = None, 
+              compile_kwargs={}, **fit_kwargs, ): 
+        pass
 
-
+    def predict(self, img):
+        pass
