@@ -1,1 +1,2 @@
 from data_generation.stanford_cars_dataloader import StanfordCarsDataloader 
+from data_generation.softlabels_dataloader import SoftlabelsDataloader 

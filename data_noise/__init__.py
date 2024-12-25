@@ -51,7 +51,7 @@ def add_gaussian_blur(img, l=21, std=1.0):
 
 
 # Simple image augmentation
-def add_augmentation(img, img_size=128, num=2): # INPUT FORMAT: PIL image 
+def add_augmentation(img, img_size=(224, 224), num=2): # INPUT FORMAT: PIL image 
 
     img = cv2.cvtColor(np.array(img) , cv2.COLOR_BGR2RGB) 
 
@@ -86,8 +86,8 @@ def add_augmentation(img, img_size=128, num=2): # INPUT FORMAT: PIL image
             if img_name.split('.')[1] == 'png':
                 img = cv2.imread(img_dir+img_name)
                 img = Image.fromarray(img,'RGB')
-                img = img.resize((img_size,img_size))
+                img = img.resize(img_size)
                 augmented.append(Image.fromarray(np.array(img))) 
     
-    # Return a larger numpy array of the arrays of images
+    # Return a list of the numpy arrays of images
     return augmented #np.array(augmented)
