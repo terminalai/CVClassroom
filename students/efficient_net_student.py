@@ -10,15 +10,16 @@ from data_noise import add_gaussian_blur, add_augmentation
 
 # VARIABLES
 default_target_img_shape = (224, 224, 3) 
+n_classes_per_broad_label = [14, 10, 14, 13, 14, 14, 15, 12, 15, 12, 11, 11, 11, 11, 9, 10]
 
 class EfficientNetStudent(StanfordCarsStudentModel, EfficientNetModel):
     
-    def __init__(self, save_dir, data_dir, label_file, expert_class, 
-                 mdl_noise = True, n_classes = 196, img_shape = default_target_img_shape):
+    def __init__(self, save_dir, data_dir, label_file, expert_class, # expert_class is 1-Indexed
+                 mdl_noise = True, img_shape = default_target_img_shape):
         # TODO: implement option to include data and model noise or not
         # initialise abstract super classes
         StanfordCarsStudentModel.__init__(self, expert_class, img_shape)
-        EfficientNetModel.__init__(self, save_dir, n_classes, img_shape=img_shape)
+        EfficientNetModel.__init__(self, save_dir, n_classes_per_broad_label[expert_class-1], img_shape=img_shape)
 
         # create train and valid dataframes 
         self.train_DL = SLDL.__init__("train", data_dir, label_file, expert_class, True, 20, default_target_img_shape, True, [add_gaussian_blur, add_augmentation(img_size=default_target_img_shape[0])], split_train_valid(train_over_total_frac=0.8), shuffle=True) # mode, datafile, labelfile, expert_class, no_train_indices_in_valid?, batchsize, datashape, modify_data?, modification_functions, validation sampler, shuffle,**kwargs
