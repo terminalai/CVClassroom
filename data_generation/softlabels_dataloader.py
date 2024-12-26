@@ -2,7 +2,7 @@
 import os 
 import sys
 sys.path.append("../CVClassroom")
-
+from teachers.CMAL_net_tresnet.CMAL_net_gating import CMALNetGatingModel as GM
 import pandas as pd
 import numpy as np
 import keras.utils
@@ -29,10 +29,6 @@ class SoftlabelsDataloader(keras.utils.PyDataset):
         if valid_sampler is None: 
             valid_sampler = default_vsampler 
 
-
-        # TODO: USE THE USE_GATING_MODEL PARAMETER 
-
-
         # initialise object attributes
         self.bs = batch_size
         self.dts = data_shape
@@ -41,7 +37,8 @@ class SoftlabelsDataloader(keras.utils.PyDataset):
         self.data_folder_prefix = data_folder_prefix 
         self.return_main_label = return_main_label 
         self.one_hot = one_hot # only of expert_class is set and return_main_label=False 
-        self.out_dim=out_dim # only used if one_hot=True 
+        self.out_dim=out_dim # only used if one_hot=True
+        self.expert_class = expert_class
 
         assert (not self.one_hot) or ((expert_class is not None) and (not return_main_label)) , "One-hot encoding is only available when the expert class is set and the main label is not to be returned! (SLDL)"
         
@@ -70,10 +67,9 @@ class SoftlabelsDataloader(keras.utils.PyDataset):
         
         if expert_class is not None: 
             # filter data based on expert class and convert to numpy array
-            self.indices = np.array(list(filter(lambda x: expert_class == self.labelDF.loc[x, "broad_label"], self.indices)))
-        
-        self.expert_class = expert_class 
-
+            if use_gating_mdl: self.indices = np.array(list(filter(lambda x: expert_class == np.argmax(GM.get_broad_labels(keras.utils.load_img( os.path.join(self.data_folder_prefix , self.labelDF.loc[x, "path"])))), self.indices)))
+            else: self.indices = np.array(list(filter(lambda x: expert_class == self.labelDF.loc[x, "broad_label"], self.indices)))
+ 
 
     def on_epoch_end(self): 
         if self.shuffle:
@@ -99,7 +95,7 @@ class SoftlabelsDataloader(keras.utils.PyDataset):
         num_finished = 0 
         for i in indices:
             # get image
-            img = keras.utils.load_img( os.path.join(self.data_folder_prefix , self.labelDF.loc[i, "path"]) , target_size=self.dts, interpolation='bilinear') # [1:] is to remove the dot at the start of the filename string
+            img = keras.utils.load_img( os.path.join(self.data_folder_prefix , self.labelDF.loc[i, "path"]) , target_size=self.dts, interpolation='bilinear')
             
             # modify the image
             if len(self.modfuncs):
@@ -124,9 +120,7 @@ class SoftlabelsDataloader(keras.utils.PyDataset):
                 alr += 1 
 
                 if self.return_main_label: 
-                    y[num_finished, alr] = self.labelDF.loc[i, "label"]
-                    alr += 1 
-                
+                    y[num_finished, alr] = self.labelDF.loc[i, "label"]                
 
             num_finished += 1 
             
