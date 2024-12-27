@@ -25,6 +25,7 @@ class EfficientNetStudent(StanfordCarsStudentModel, EfficientNetModel):
         # initialise abstract super classes
         StanfordCarsStudentModel.__init__(self, expert_class, img_shape)
         self.out_dim = n_classes_per_broad_label[expert_class-1] 
+        if expert_class is None: self.out_dim = 196
         EfficientNetModel.__init__(self, save_dir, self.out_dim, img_shape=img_shape, noise_type=noise_type)
 
     def train_with_softlabels(self, softlabels_file:str, use_gating_mdl=False, train_aug_funcs:list=[add_gaussian_blur, lambda img: add_augmentation(img, default_target_img_shape[:2], 1)[0] ], # data noise is in aug_funcs 
