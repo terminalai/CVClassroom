@@ -2,7 +2,6 @@
 import os 
 import sys
 sys.path.append("../CVClassroom")
-from teachers.CMAL_net_tresnet.CMAL_net_gating import CMALNetGatingModel as GM
 import pandas as pd
 import numpy as np
 import keras.utils
@@ -67,8 +66,11 @@ class SoftlabelsDataloader(keras.utils.PyDataset):
         
         if expert_class is not None: 
             # filter data based on expert class and convert to numpy array
-            if use_gating_mdl: self.indices = np.array(list(filter(lambda x: expert_class == 1+np.argmax(GM.get_broad_labels(keras.utils.load_img( os.path.join(self.data_folder_prefix , self.labelDF.loc[x, "path"])))), self.indices)))
-            else: self.indices = np.array(list(filter(lambda x: expert_class == self.labelDF.loc[x, "broad_label"], self.indices)))
+            if use_gating_mdl: 
+                raise NotImplementedError("GATING MODEL IS NOT FUNCTIONAL YET FOR SOFTLABELS DATALOADER")
+                self.indices = np.array(list(filter(lambda x: expert_class == 1+np.argmax(GM.get_broad_labels(keras.utils.load_img( os.path.join(self.data_folder_prefix , self.labelDF.loc[x, "path"])))), self.indices)))
+            else: 
+                self.indices = np.array(list(filter(lambda x: expert_class == self.labelDF.loc[x, "broad_label"], self.indices)))
  
 
     def on_epoch_end(self): 
