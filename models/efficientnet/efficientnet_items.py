@@ -36,11 +36,11 @@ class SEBlock(keras.layers.Layer):
         self.reduce_conv = keras.layers.Conv2D(filters=self.num_reduced_filters,
                                                   kernel_size=(1, 1),
                                                   strides=1,
-                                                  padding="same")
+                                                  padding="same", kernel_initializer=conv_kernel_initializer)
         self.expand_conv = keras.layers.Conv2D(filters=input_channels,
                                                   kernel_size=(1, 1),
                                                   strides=1,
-                                                  padding="same")
+                                                  padding="same", kernel_initializer=conv_kernel_initializer)
 
     def call(self, inputs, **kwargs):
         branch = self.pool(inputs)
@@ -54,6 +54,32 @@ class SEBlock(keras.layers.Layer):
         return output
 
 
+import numpy as np 
+import tensorflow.compat.v1 as tfv1 
+def conv_kernel_initializer(shape, dtype=None, partition_info=None):
+    """Initialization for convolutional kernels.
+
+    The main difference with tf.variance_scaling_initializer is that
+    tf.variance_scaling_initializer uses a truncated normal with an uncorrected
+    standard deviation, whereas here we use a normal distribution. Similarly,
+    tf.initializers.variance_scaling uses a truncated normal with
+    a corrected standard deviation.
+
+    Args:
+        shape: shape of variable
+        dtype: dtype of variable
+        partition_info: unused
+
+    Returns:
+        an initialization for the variable
+    """
+    del partition_info
+    kernel_height, kernel_width, _, out_filters = shape
+    fan_out = int(kernel_height * kernel_width * out_filters)
+    return tfv1.random_normal(
+        shape, mean=0.0, stddev=np.sqrt(2.0 / fan_out), dtype=dtype)
+
+
 class MBConv(keras.layers.Layer):
     def __init__(self, in_channels, out_channels, expansion_factor, stride, k, drop_connect_rate):
         super(MBConv, self).__init__()
@@ -64,17 +90,17 @@ class MBConv(keras.layers.Layer):
         self.conv1 = keras.layers.Conv2D(filters=in_channels * expansion_factor,
                                             kernel_size=(1, 1),
                                             strides=1,
-                                            padding="same")
+                                            padding="same", kernel_initializer=conv_kernel_initializer)
         self.bn1 = keras.layers.BatchNormalization()
         self.dwconv = keras.layers.DepthwiseConv2D(kernel_size=(k, k),
                                                       strides=stride,
-                                                      padding="same")
+                                                      padding="same", depthwise_initializer=conv_kernel_initializer)
         self.bn2 = keras.layers.BatchNormalization()
         self.se = SEBlock(input_channels=in_channels * expansion_factor)
         self.conv2 = keras.layers.Conv2D(filters=out_channels,
                                             kernel_size=(1, 1),
                                             strides=1,
-                                            padding="same")
+                                            padding="same", kernel_initializer=conv_kernel_initializer)
         self.bn3 = keras.layers.BatchNormalization()
         self.dropout = keras.layers.Dropout(rate=drop_connect_rate)
 
@@ -133,7 +159,7 @@ class EfficientNetItems():
         return keras.layers.Conv2D(filters=round_filters(32, width_coefficient),
                                                 kernel_size=(3, 3),
                                                 strides=2,
-                                                padding="same")
+                                                padding="same", kernel_initializer=conv_kernel_initializer)
 
     @staticmethod 
     def get_bn1(): 
@@ -210,7 +236,7 @@ class EfficientNetItems():
         return keras.layers.Conv2D(filters=round_filters(1280, width_coefficient),
                                                 kernel_size=(1, 1),
                                                 strides=1,
-                                                padding="same")
+                                                padding="same", kernel_initializer=conv_kernel_initializer)
 
     @staticmethod 
     def get_bn2(): 

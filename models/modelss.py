@@ -67,7 +67,7 @@ class EfficientNetModel(): # each expert can be an EfficientNetModel
         pass # TODO: TEST THE MODEL!!! 
 
     def predict(self, x, *args, **kwargs): 
-        print("X SHAPE", x.shape)
+        #print("X SHAPE", x.shape)
         return self.model.predict(x, *args, **kwargs) 
     
     def save(self, save_name="main.keras" ): 

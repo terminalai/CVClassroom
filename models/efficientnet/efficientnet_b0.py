@@ -1,6 +1,7 @@
 import sys
 if 'idlelib.run' in sys.modules: sys.path.pop(1) # fixes an issue with import 
 sys.path.insert(1, './tests/')
+sys.path.insert(1, '.')
 
 import os
 os.environ['KERAS_BACKEND'] = "tensorflow" 
@@ -146,7 +147,7 @@ def train_ltnl_models():
             pass # just means it's already been made 
 
 
-        ltnl_model = get_ltnl_model() 
+        ltnl_model = get_ltnl_model(10) 
         #ltnl_model.summary() 
         ltnl_model.compile(optimizer='adam',
                     loss = keras.losses.BinaryCrossentropy(),#from_logits=True),
@@ -163,6 +164,22 @@ def train_ltnl_models():
 
 
 if __name__ == "__main__": 
+
+    ltnl_model = get_ltnl_model(10) 
+    #ltnl_model.summary() 
+    ltnl_model.compile(optimizer='adam',
+                loss = keras.losses.BinaryCrossentropy(),#from_logits=True),
+                metrics = metrics) 
+
+    valid_sampler = valid_samplers[0] 
+    train_dataloader = SCDL('train', data_shape=default_target_img_shape, valid_sampler=valid_sampler, batch_size=1) 
+    x, y = train_dataloader[0] 
+    print("X SHAPE", x.shape)
+    print("Y SHAPE", y)
+
+    print("OUTPUT", ltnl_model.predict(x)) 
+
+    1/0 
     train_noiseless_models() 
     train_ltnl_models()
 

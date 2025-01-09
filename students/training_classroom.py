@@ -62,7 +62,7 @@ class TrainingClassroom():
 
     def predict_with_broad_label(self, img, broad_label): # input PIL image
         #assert img is not None, "No image detected for prediction"
-        print("IMG SHAPE PWBL", img.shape)
+        #print("IMG SHAPE PWBL", img.shape)
         return self.studentlst[broad_label].predict(img) 
     
     @classmethod 
@@ -87,6 +87,7 @@ if __name__=="__main__":
 
     from keras.preprocessing.image import load_img, img_to_array
     from keras_cv.layers import RandAugment, RandomFlip, RandomRotation 
+    import tensorflow as tf 
 
     # define augmentation function 
     default_augment_func = keras.Sequential([ RandAugment([0,255]), 
@@ -94,12 +95,14 @@ if __name__=="__main__":
                                     RandomRotation(factor=0.1), 
                                     ])
     
-    img = default_augment_func(img_to_array(load_img(labelDF.loc[0, 'path'] , target_size=(224,224,3), interpolation='bilinear' ))) 
+    img = default_augment_func(img_to_array(load_img(labelDF.loc[0, 'path'] , target_size=(224, 224, 3), interpolation='bilinear' ))) 
 
-    print("IMG SHAPE", img.shape)
+    img = tf.expand_dims(img, axis=0) 
+
+    #print("IMG SHAPE", img.shape)
 
     print(new_class.predict_with_broad_label( img , 0)) 
-
+#
     # test save/load 
-    new_class.save()
+    new_class.save_to_name('main.keras')
 
