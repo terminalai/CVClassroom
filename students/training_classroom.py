@@ -46,7 +46,7 @@ class TrainingClassroom():
                 self.studentlst.append(EfficientNetStudent(os.path.join(self.classdir, "expert_{}".format(i)), i))
 
     def load_from_name(self, load_name:str="main.keras"): 
-        for i in range(1, self.n_broad_labels):
+        for i in range(1, self.n_broad_labels+1):
                 self.studentlst.append(EfficientNetStudent(os.path.join(self.classdir, "expert_{}".format(i)), i, load_from_name=load_name))
     
     def save_to_name(self, save_name:str="main.keras"): 
@@ -71,6 +71,9 @@ class TrainingClassroom():
         broad_label = np.argmax(cls.gating_model.broad_label_probs(keras.utils.load_img(img)))
         return broad_label
     
+    def predict_with_gating_model(self, img):
+        broad_label = get_gtg_model_broad_label(img)
+        return self.studentlst[broad_label].predict(img) 
 
 
 
