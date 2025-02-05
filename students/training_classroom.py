@@ -6,6 +6,7 @@ import os
 from teachers.CMAL_net_tresnet.CMAL_net_gating import CMALNetGatingModel 
 import keras
 from PIL import Image 
+from data_generation import SoftlabelsDataloader as SLDL
 
 from students.efficient_net_student import EfficientNetStudent, add_gaussian_blur, add_augmentation, default_target_img_shape 
 
@@ -55,9 +56,25 @@ class TrainingClassroom():
         
 
     def train(self, softlabels_file:str, train_aug_funcs:list=[add_gaussian_blur, lambda img: add_augmentation(img, default_target_img_shape[:2], 1)[0] ], # data noise is in aug_funcs 
-                              valid_aug_funcs=[], valid_sampler=None, optimizer='AdamW', loss=keras.losses.BinaryCrossentropy(), metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)]):
+                              valid_aug_funcs=[], valid_sampler=None, lr=1e-5, loss=keras.losses.BinaryCrossentropy(), metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], 
+                              num_epochs=1, ):
+        i = 0 
         for mdl in self.studentlst:
-            mdl.train_with_softlabels(softlabels_file, train_aug_funcs, valid_aug_funcs, valid_sampler, optimizer, loss, metrics) 
+            print("TRAINING {}".format(i))
+            optimizer = keras.optimizers.AdamW(learning_rate=lr) 
+            mdl.train_with_softlabels(softlabels_file, train_aug_funcs, valid_aug_funcs, valid_sampler, optimizer, loss, metrics, num_epochs=num_epochs) 
+            i += 1 
+    
+    def setup_to_train_again(self): 
+        for mdl in self.studentlst:
+            mdl.model.trained_already = False 
+            mdl.trained_already = False 
+
+    def evaluate(self, softlabels_file:str): 
+        ress = [] 
+        for mdl in self.studentlst: 
+            ress.append(mdl.model.evaluate(SLDL("test", softlabels_file, mdl.expert_class, mdl.out_dim, False, 20, default_target_img_shape, [], valid_sampler=None, shuffle=True)))
+        return ress
 
 
     def predict_with_broad_label(self, img, broad_label): # input PIL image
@@ -72,7 +89,7 @@ class TrainingClassroom():
         return broad_label
     
     def predict_with_gating_model(self, img):
-        broad_label = get_gtg_model_broad_label(img)
+        broad_label = self.get_gtg_model_broad_label(img)
         return self.studentlst[broad_label].predict(img) 
 
 

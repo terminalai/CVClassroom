@@ -1,3 +1,4 @@
+import tensorflow as tf 
 import keras 
 import models.efficientnet.efficientnet_b0 as efficientnet_b0 
 from model_noise import LinearTransformNoiseLayer as LTNL 
@@ -43,25 +44,47 @@ class EfficientNetModel(): # each expert can be an EfficientNetModel
         self.trained_already = False 
     
 
-    def train(self, train_dataloader, valid_dataloader, optimizer='AdamW', 
+    def train(self, train_dataloader, valid_dataloader, optimizer=keras.optimizers.AdamW(learning_rate=1e-5), 
               loss=keras.losses.BinaryCrossentropy(), # from_logits=False, as SoftMax activation is assumed ( https://stackoverflow.com/questions/41455101/what-is-the-meaning-of-the-word-logits-in-tensorflow ) 
               metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], 
-              num_epochs=12, valid_freq=3, callbacks:list = None, 
-              compile_kwargs={}, **fit_kwargs, ): 
+              num_epochs=12, valid_freq=3, ): 
         
         assert (not self.trained_already), "Model has already been trained." 
 
-        if callbacks == None: 
+        '''if callbacks == None: 
             [ utils.SaveEveryEpochCallback(self.save_dir) ] 
 
         self.model.compile(optimizer=optimizer, loss=loss, metrics = metrics, **compile_kwargs) 
 
         self.model.fit(x=train_dataloader, validation_data=valid_dataloader, 
                        verbose=2, epochs=num_epochs, validation_freq=valid_freq, 
-                       callbacks=callbacks, **fit_kwargs) 
-
-
+                       callbacks=callbacks, **fit_kwargs) ''' 
+        
+        for epoch in range(num_epochs): 
+            for step, (x, y) in enumerate(train_dataloader): 
+                with tf.GradientTape() as tape: 
+                    logits = self.model(x, training=True) 
+                    l = loss(y, logits) 
+                gradients = tape.gradient(l, self.model.trainable_variables) 
+                optimizer.apply_gradients(zip(gradients, self.model.trainable_variables)) 
+                #if step % 100 == 0: 
+                #    print("STEP", step, "LOSS", loss)
+            
+            if epoch%valid_freq == 0:
+                for x, y in valid_dataloader: 
+                    logits = self.model(x, training=False) 
+                    for metric in metrics: 
+                        metric.update_state(y, logits) 
+                metric_results = [] 
+                for metric in metrics: 
+                    metric_result = metric.result() 
+                    metric_results.append(metric_result) 
+                    print("METRIC", metric.name, "RESULT", metric_result)
+                    metric.reset_states() 
+        
         self.trained_already = True 
+
+
     
     def test(self, test_dataloader, metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], ): 
         pass # TODO: TEST THE MODEL!!! 

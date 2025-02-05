@@ -34,12 +34,16 @@ class EfficientNetStudent(StanfordCarsStudentModel, EfficientNetModel):
             self.model.load_weights(os.path.join(save_dir, load_from_name))
 
     def train_with_softlabels(self, softlabels_file:str, train_aug_funcs:list=[add_gaussian_blur, lambda img: add_augmentation(img, default_target_img_shape[:2], 1)[0] ], # data noise is in aug_funcs 
-                              valid_aug_funcs=[], valid_sampler=None, optimizer='AdamW', loss=keras.losses.BinaryCrossentropy(), metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], 
-                              num_epochs=12, valid_freq=3, callbacks = None, compile_kwargs={},): 
+                              valid_aug_funcs=[], valid_sampler=None, optimizer=keras.optimizers.AdamW(learning_rate=1e-5), loss=keras.losses.BinaryCrossentropy(), metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], 
+                              num_epochs=12, valid_freq=3,): 
         train_DL = SLDL("train", softlabels_file, self.expert_class, self.out_dim, False, 20, default_target_img_shape, train_aug_funcs, valid_sampler=valid_sampler, shuffle=True) # mode, labelfile, expert_class, use_gating_mdl, batchsize, datashape, modification_functions, no_train_indices_in_valid?, validation sampler, shuffle,**kwargs
         valid_DL = SLDL("valid", softlabels_file, self.expert_class, self.out_dim,False, 20, default_target_img_shape, valid_aug_funcs, valid_sampler=valid_sampler, shuffle=True)
 
-        EfficientNetModel.train(self, train_DL, valid_DL, optimizer=optimizer, loss=loss, metrics=metrics, num_epochs=num_epochs, valid_freq=valid_freq, callbacks=callbacks, compile_kwargs=compile_kwargs)
+        EfficientNetModel.train(self, train_DL, valid_DL, optimizer=optimizer, loss=loss, metrics=metrics, num_epochs=num_epochs, valid_freq=valid_freq, )
+
+        # clear 
+        del train_DL 
+        del valid_DL 
 
     # Overloaded function, train dataloaders
     def train_with_dataloaders(self, train_DL, valid_DL, optimizer='AdamW', loss=keras.losses.BinaryCrossentropy(), metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], 
