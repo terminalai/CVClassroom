@@ -7,5 +7,5 @@ opendatasets
 torch
 torchvision 
 fastai 
-PIL
-tempfile
+pillow
+opencv-python

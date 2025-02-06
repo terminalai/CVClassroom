@@ -46,7 +46,7 @@ class EfficientNetModel(): # each expert can be an EfficientNetModel
 
     def train(self, train_dataloader, valid_dataloader, optimizer=keras.optimizers.AdamW(learning_rate=1e-5), 
               loss=keras.losses.BinaryCrossentropy(), # from_logits=False, as SoftMax activation is assumed ( https://stackoverflow.com/questions/41455101/what-is-the-meaning-of-the-word-logits-in-tensorflow ) 
-              metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], 
+              metrics=[keras.metrics.CategoricalAccuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], 
               num_epochs=12, valid_freq=3, ): 
         
         assert (not self.trained_already), "Model has already been trained." 
@@ -60,15 +60,23 @@ class EfficientNetModel(): # each expert can be an EfficientNetModel
                        verbose=2, epochs=num_epochs, validation_freq=valid_freq, 
                        callbacks=callbacks, **fit_kwargs) ''' 
         
+        # train metrics 
+        train_acc_metric = keras.metrics.CategoricalAccuracy() 
+        train_loss_metric = keras.metrics.Mean()
+        train_top5_metric = keras.metrics.TopKCategoricalAccuracy(k=5) 
+
+        print("STARTING TRANINING")
+        
         for epoch in range(num_epochs): 
-            for step, (x, y) in enumerate(train_dataloader): 
-                with tf.GradientTape() as tape: 
-                    logits = self.model(x, training=True) 
-                    l = loss(y, logits) 
-                gradients = tape.gradient(l, self.model.trainable_variables) 
-                optimizer.apply_gradients(zip(gradients, self.model.trainable_variables)) 
-                #if step % 100 == 0: 
-                #    print("STEP", step, "LOSS", loss)
+            num_batches = len(train_dataloader)
+            for batch in range(num_batches): 
+                x, y = train_dataloader[batch]
+                self.train_one_step(x, y, train_acc_metric, train_loss_metric, train_top5_metric, optimizer, loss)
+
+            print("EPOCH", epoch, "TRAIN ACC", train_acc_metric.result(), "TRAIN LOSS", train_loss_metric.result(), "TRAIN TOP5", train_top5_metric.result())
+            train_acc_metric.reset_state() 
+            train_loss_metric.reset_state()
+            train_top5_metric.reset_state()
             
             if epoch%valid_freq == 0:
                 for x, y in valid_dataloader: 
@@ -79,10 +87,32 @@ class EfficientNetModel(): # each expert can be an EfficientNetModel
                 for metric in metrics: 
                     metric_result = metric.result() 
                     metric_results.append(metric_result) 
-                    print("METRIC", metric.name, "RESULT", metric_result)
-                    metric.reset_states() 
+                    print("VAL METRIC", metric.name, "RESULT", metric_result)
+                    metric.reset_state() 
+
+            
         
         self.trained_already = True 
+
+
+    @tf.function 
+    def train_one_step(self, x, y, train_acc_metric, train_loss_metric, train_top5_metric, optimizer, loss):
+        with tf.GradientTape() as tape: 
+            logits = self.model(x, training=True) 
+            l = loss(y, logits) 
+        gradients = tape.gradient(l, self.model.trainable_variables) 
+        optimizer.apply_gradients(zip(gradients, self.model.trainable_variables)) 
+        #if step % 100 == 0: 
+        #    print("STEP", step, "LOSS", loss)
+        # train metrics 
+        #print("Y", y) 
+        #print("YSHAPE", y.shape)
+        #print("LOGITS", logits) 
+        #print("LOGITSSHAPE", logits.shape)
+        train_acc_metric.update_state(y, logits)
+        train_loss_metric.update_state(l)
+        train_top5_metric.update_state(y, logits) 
+        return l
 
 
     

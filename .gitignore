@@ -166,3 +166,5 @@ backup
 testing.py
 stanford-car-dataset-by-classes-folder
 tresnet-l-v2.pth
+
+venv

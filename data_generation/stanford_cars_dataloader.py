@@ -6,9 +6,10 @@ import numpy as np
 import scipy.io 
 import math 
 
-import keras.utils 
-from keras.preprocessing.image import load_img, img_to_array
+#import keras.utils 
+from tensorflow.keras.utils import load_img, img_to_array
 from keras_cv.layers import RandAugment, RandomFlip, RandomRotation 
+import keras 
 
 import params 
 
