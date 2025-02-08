@@ -47,6 +47,7 @@ class TrainingClassroom():
                 self.studentlst.append(EfficientNetStudent(os.path.join(self.classdir, "expert_{}".format(i)), i))
 
     def load_from_name(self, load_name:str="main.keras"): 
+        self.studentlst = [] 
         for i in range(1, self.n_broad_labels+1):
                 self.studentlst.append(EfficientNetStudent(os.path.join(self.classdir, "expert_{}".format(i)), i, load_from_name=load_name))
     
@@ -70,10 +71,26 @@ class TrainingClassroom():
             mdl.model.trained_already = False 
             mdl.trained_already = False 
 
-    def evaluate(self, softlabels_file:str): 
+    def evaluate(self, softlabels_file:str, loss=keras.losses.BinaryCrossentropy()): 
         ress = [] 
+        test_dl = SLDL("test", softlabels_file, mdl.expert_class, mdl.out_dim, False, 20, default_target_img_shape, [], valid_sampler=None, shuffle=True) 
         for mdl in self.studentlst: 
-            ress.append(mdl.model.evaluate(SLDL("test", softlabels_file, mdl.expert_class, mdl.out_dim, False, 20, default_target_img_shape, [], valid_sampler=None, shuffle=True)))
+
+            metrics=[keras.metrics.CategoricalAccuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)]
+
+            for i in range(len(test_dl)): 
+                x, y = test_dl[i]
+                logits = self.model(x, training=False) 
+                for metric in metrics: 
+                    metric.update_state(y, logits) 
+            metric_results = [] 
+            for metric in metrics: 
+                metric_result = metric.result() 
+                metric_results.append(metric_result) 
+                print("VAL METRIC", metric.name, "RESULT", metric_result)
+                metric.reset_state() 
+
+            ress.append(metric_results)
         return ress
 
 

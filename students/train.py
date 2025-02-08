@@ -33,9 +33,13 @@ while True:
     tc.setup_to_train_again() 
 
     # test 
-    print("RESULTS:", tc.evaluate('./car_connection_dataset/cmalnet_softlabels_00.csv'))
+    try: 
+        tc.evaluate('./car_connection_dataset/cmalnet_softlabels_00.csv')
+    except Exception as e: 
+        print("EVALUATION FAILED UGH")
+        print(e) 
 
-    epoch += 56
+    epoch += 6
     tc.save_to_name("epoch_{}.keras".format(epoch))
     
 

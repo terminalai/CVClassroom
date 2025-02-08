@@ -67,7 +67,7 @@ class EfficientNetModel(): # each expert can be an EfficientNetModel
 
         print("STARTING TRANINING")
         
-        for epoch in range(num_epochs): 
+        for epoch in range(1, 1+num_epochs): 
             num_batches = len(train_dataloader)
             for batch in range(num_batches): 
                 x, y = train_dataloader[batch]
@@ -79,7 +79,8 @@ class EfficientNetModel(): # each expert can be an EfficientNetModel
             train_top5_metric.reset_state()
             
             if epoch%valid_freq == 0:
-                for x, y in valid_dataloader: 
+                for i in range(len(valid_dataloader)): 
+                    x, y = valid_dataloader[i]
                     logits = self.model(x, training=False) 
                     for metric in metrics: 
                         metric.update_state(y, logits) 
@@ -95,7 +96,7 @@ class EfficientNetModel(): # each expert can be an EfficientNetModel
         self.trained_already = True 
 
 
-    @tf.function 
+    #@tf.function 
     def train_one_step(self, x, y, train_acc_metric, train_loss_metric, train_top5_metric, optimizer, loss):
         with tf.GradientTape() as tape: 
             logits = self.model(x, training=True) 
