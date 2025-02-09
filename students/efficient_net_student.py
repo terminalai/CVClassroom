@@ -36,8 +36,8 @@ class EfficientNetStudent(StanfordCarsStudentModel, EfficientNetModel):
     def train_with_softlabels(self, softlabels_file:str, train_aug_funcs:list=[add_gaussian_blur, lambda img: add_augmentation(img, default_target_img_shape[:2], 1)[0] ], # data noise is in aug_funcs 
                               valid_aug_funcs=[], valid_sampler=None, optimizer=keras.optimizers.AdamW(learning_rate=1e-5), loss=keras.losses.BinaryCrossentropy(), metrics=[keras.metrics.Accuracy(), keras.metrics.TopKCategoricalAccuracy(k=5)], 
                               num_epochs=12, valid_freq=3,): 
-        train_DL = SLDL("train", softlabels_file, self.expert_class, self.out_dim, False, 100, default_target_img_shape, train_aug_funcs, valid_sampler=valid_sampler, shuffle=True) # mode, labelfile, expert_class, use_gating_mdl, batchsize, datashape, modification_functions, no_train_indices_in_valid?, validation sampler, shuffle,**kwargs
-        valid_DL = SLDL("valid", softlabels_file, self.expert_class, self.out_dim,False, 100, default_target_img_shape, valid_aug_funcs, valid_sampler=valid_sampler, shuffle=True)
+        train_DL = SLDL("train", softlabels_file, self.expert_class, self.out_dim, False, 200, default_target_img_shape, train_aug_funcs, valid_sampler=valid_sampler, shuffle=True) # mode, labelfile, expert_class, use_gating_mdl, batchsize, datashape, modification_functions, no_train_indices_in_valid?, validation sampler, shuffle,**kwargs
+        valid_DL = SLDL("valid", softlabels_file, self.expert_class, self.out_dim,False, 200, default_target_img_shape, valid_aug_funcs, valid_sampler=valid_sampler, shuffle=True)
 
         EfficientNetModel.train(self, train_DL, valid_DL, optimizer=optimizer, loss=loss, metrics=metrics, num_epochs=num_epochs, valid_freq=valid_freq, )
 

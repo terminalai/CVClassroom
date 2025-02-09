@@ -293,17 +293,6 @@ pandas.errors.ParserError: Error tokenizing data. C error: out of memory
 
 
 ))
-
-
-
-
-
-
-
-
-
-
-
 TRAINING 0
 STARTING TRANINING
 EPOCH 1 TRAIN ACC tf.Tensor(0.22730769, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.27864182, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7184615, shape=(), dtype=float32)
@@ -344,5 +333,803 @@ TRAINING 3
 
 
 
+[data was lost here] 
 
 
+
+
+
+
+
+after epoch 18: 
+TRAINING 0
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.21865384, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.33159214, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71442306, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.21596155, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29535553, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71884614, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.22057693, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.27495033, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.72134614, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0034523814, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.71666664, shape=(), dtype=float32)
+TRAINING 1
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.175, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.5412759, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6522222, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.18722223, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.5256274, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6761111, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.18444444, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.5247795, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.675, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.016500002, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6725, shape=(), dtype=float32)
+TRAINING 2
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.233125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4169424, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.703125, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2525, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3875852, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7028125, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.24375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.36657238, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7203125, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.010476191, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.7, shape=(), dtype=float32)
+TRAINING 3
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.20055556, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3921667, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6825, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.20305556, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.36121237, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7072222, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.21138889, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.34124815, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7113889, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0065384614, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6775, shape=(), dtype=float32)
+TRAINING 4
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.2381579, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3843205, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.63842106, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.23973684, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.35041076, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.64736843, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.24605264, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3329612, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6507895, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.006339286, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.65375, shape=(), dtype=float32)
+TRAINING 5
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.18333334, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4317065, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.5646667, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.186, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.40741485, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.563, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.18366666, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3899497, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.5786667, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.015119047, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.52166665, shape=(), dtype=float32)
+TRAINING 6
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.0835, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.515936, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.4455, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.0925, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.5052475, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.4455, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.0885, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.49484977, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.458, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0061666667, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.4125, shape=(), dtype=float32)
+TRAINING 7
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.22909091, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.48810676, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.62363636, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.23136364, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.47336972, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.64363635, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.23, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4595888, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.64272726, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.005, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6175, shape=(), dtype=float32)
+TRAINING 8
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.39, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.44626474, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.74454546, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.38545454, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.42008573, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7518182, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.39409092, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.41183996, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7418182, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.046000004, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.705, shape=(), dtype=float32)
+TRAINING 9
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.19342105, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.39786738, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.20052631, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.36103255, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7176316, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.19789474, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.34028584, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.72710526, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.012416666, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.648, shape=(), dtype=float32)
+TRAINING 10
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.3284375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.44683754, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6796875, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.325625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.41922948, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6871875, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.32875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.39824623, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6921875, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.010795455, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.68, shape=(), dtype=float32)
+TRAINING 11
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.22722222, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.42344248, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6677778, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22222222, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.39686167, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6538889, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.22222222, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.37712145, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.66833335, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0034090907, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.64125, shape=(), dtype=float32)
+TRAINING 12
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.256875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.44796118, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6803125, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2696875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.42764267, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.69125, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2671875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.40663233, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.70125, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0125, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6675, shape=(), dtype=float32)
+TRAINING 13
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.15625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.45577112, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.60875, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.1621875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.42837447, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6203125, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.1690625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4084922, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6271875, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.002727273, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.60333335, shape=(), dtype=float32)
+TRAINING 14
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.135, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.5704789, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.66125, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.13375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.560689, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6725, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.16125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.55873734, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.689375, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.005833334, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6275, shape=(), dtype=float32)
+TRAINING 15
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.20586957, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.40324193, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.78, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.20543478, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3726465, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.78086954, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.21282609, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3569664, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.78, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0092, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.705, shape=(), dtype=float32)
+EVALUATION FAILED UGH
+local variable 'mdl' referenced before assignment
+TRAINING 0
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.2225, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25944883, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7203846, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22923078, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25084588, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7192308, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.22865385, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.24512078, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.725, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00041666668, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.7291667, shape=(), dtype=float32)
+TRAINING 1
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.19, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.5030848, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.679, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.197, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4965848, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6815, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.202, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.48711175, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6895, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00275, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.635, shape=(), dtype=float32)
+TRAINING 2
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.239375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.34896654, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7134375, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2521875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.32928932, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.724375, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.245625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.31929827, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7221875, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00044642857, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.7, shape=(), dtype=float32)
+TRAINING 3
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.21083333, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.32314003, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71194446, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.21361111, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30858386, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7033333, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.20833333, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29956973, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71305555, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0026923078, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6825, shape=(), dtype=float32)
+TRAINING 4
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.24815789, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.312113, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6531579, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.26447368, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29578266, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6586842, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.24236841, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2852849, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.66921055, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0008035715, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.67375, shape=(), dtype=float32)
+TRAINING 5
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.183, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3725535, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.5706667, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.20133333, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.35618898, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.5826667, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.19033334, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.34591338, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.58433336, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0039285715, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.49333334, shape=(), dtype=float32)
+TRAINING 6
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.1035, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.48164862, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.455, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.093, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.46961173, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.471, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.1, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4600648, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.463, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0006666667, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.385, shape=(), dtype=float32)
+TRAINING 7
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.23454545, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.44475853, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.64772725, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22681819, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.44206098, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.65, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.22318181, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.42807865, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.63454545, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.002708333, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6275, shape=(), dtype=float32)
+TRAINING 8
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.37545455, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.39571667, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7522727, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.3809091, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.37807292, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7340909, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.37272727, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.36415723, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7359091, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.019, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6816667, shape=(), dtype=float32)
+TRAINING 9
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.195, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3283721, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7176316, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.19342105, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3134129, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7318421, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.195, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30526927, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7431579, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.000625, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.67375, shape=(), dtype=float32)
+TRAINING 10
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.3325, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.38104007, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.686875, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.335625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.36280608, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7003125, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.3346875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3553558, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7021875, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0017045456, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.67, shape=(), dtype=float32)
+TRAINING 11
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.21111111, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.36633015, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6661111, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.21416667, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3513012, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6747222, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.21722223, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.34126368, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.67833334, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00045454546, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.63, shape=(), dtype=float32)
+TRAINING 12
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.2525, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.39222303, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6971875, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.25875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3772136, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6890625, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.268125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.36651817, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.70625, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0023863637, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6875, shape=(), dtype=float32)
+TRAINING 13
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.16666667, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.39565924, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.641, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.19166666, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3840452, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.61866665, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.182, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.37042528, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.641, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00015151515, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.605, shape=(), dtype=float32)
+TRAINING 14
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.153125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.5520984, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.680625, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.179375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.54345214, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.678125, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.185625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.5406659, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.713125, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00055555557, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.67, shape=(), dtype=float32)
+TRAINING 15
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.21108696, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3430007, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.78565216, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.205, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.33459234, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7826087, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.21565217, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.32650036, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.78586954, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.002, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.715, shape=(), dtype=float32)
+EVALUATION FAILED UGH
+local variable 'mdl' referenced before assignment
+TRAINING 0
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.22788462, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.24218518, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71865386, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.23480769, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.23849066, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7290385, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.23442307, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.23601301, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7246154, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.000119047625, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.7216667, shape=(), dtype=float32)
+TRAINING 1
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.20277777, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.48421314, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6855556, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.20277777, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.47849247, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6838889, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.19888888, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.47147125, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7027778, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0025, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6575, shape=(), dtype=float32)
+TRAINING 2
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.2459375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3082851, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7096875, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2509375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29933482, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.72, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2465625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.28929973, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.72, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00035714288, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.69625, shape=(), dtype=float32)
+TRAINING 3
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.215, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29289377, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.70305556, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.21694444, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.28558668, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7111111, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.21222222, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2811887, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.72, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0010576923, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6975, shape=(), dtype=float32)
+TRAINING 4
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.25, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2764916, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6718421, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.26447368, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.26832983, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.67421055, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2563158, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.26413223, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.67105263, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.65875, shape=(), dtype=float32)
+TRAINING 5
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.18571429, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3370779, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.5853571, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.19892856, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.32598832, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.5942857, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.18464285, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.32106218, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.5989286, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0009523811, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.555, shape=(), dtype=float32)
+TRAINING 6
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.096, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.45475698, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.468, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.0985, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.44618407, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.468, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.09, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.43617573, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.4775, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00016666668, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.43, shape=(), dtype=float32)
+TRAINING 7
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.24727273, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.42505243, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.67454547, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.25136364, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.41699818, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.66636366, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2540909, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.410275, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6618182, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0033333334, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.59, shape=(), dtype=float32)
+TRAINING 8
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.39454547, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.35371274, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7568182, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.39545456, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.33799198, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7581818, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.39772728, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.33234176, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7531818, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0038333333, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.665, shape=(), dtype=float32)
+TRAINING 9
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.20075, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29834765, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7375, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.20525, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29048353, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.75, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.20825, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2864317, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.749, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0003125, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.7125, shape=(), dtype=float32)
+TRAINING 10
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.3440625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3414534, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7128125, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.3465625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.332709, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7128125, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.3440625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3246327, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7134375, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0026136362, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.66375, shape=(), dtype=float32)
+TRAINING 11
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.21388888, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.33451143, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6869444, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22583333, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.32800338, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6697222, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.22, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3193934, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6894444, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00022727273, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.64625, shape=(), dtype=float32)
+TRAINING 12
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.2709375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.35550418, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7190625, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2671875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3436346, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7134375, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2675, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3378308, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.73, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0010227273, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.69125, shape=(), dtype=float32)
+TRAINING 13
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.18033333, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.36207289, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.624, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.189, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.35391232, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.62333333, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.186, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.34717274, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.631, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.63125, shape=(), dtype=float32)
+TRAINING 14
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.201875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.5330645, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.70875, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.189375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.5316411, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.724375, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.201875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.529767, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71625, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0011111111, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.69, shape=(), dtype=float32)
+TRAINING 15
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.20652173, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.32396996, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.78847826, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.20913044, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.31840536, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7876087, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.21782608, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.31336355, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7936956, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0018, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.717, shape=(), dtype=float32)
+EVALUATION FAILED UGH
+local variable 'mdl' referenced before assignment
+TRAINING 0
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.23865385, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.23379627, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.74, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.24807692, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.23127285, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7394231, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.24480769, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.22954811, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.74423075, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00083333335, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.74583334, shape=(), dtype=float32)
+TRAINING 1
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.2025, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.46519607, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.704, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.224, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.45855284, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7225, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4522884, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.704, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00025, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.65, shape=(), dtype=float32)
+TRAINING 2
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.253125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.28011078, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7240625, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.24, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.27423832, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7115625, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2515625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.26905346, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.731875, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0004761905, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.735, shape=(), dtype=float32)
+TRAINING 3
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.21111111, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2767925, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7177778, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.21722223, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.27023754, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7216667, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.21611111, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.268654, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.72194445, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00076923077, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.71875, shape=(), dtype=float32)
+TRAINING 4
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.25736842, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2573229, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.67368424, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2631579, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25177348, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6886842, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.26552632, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.24730511, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6810526, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.003125, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6875, shape=(), dtype=float32)
+TRAINING 5
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.20233333, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30616948, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.5936667, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.208, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30125076, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.597, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.21, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29232296, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.617, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.49166667, shape=(), dtype=float32)
+TRAINING 6
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.114, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.42424637, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.479, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.098, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4197383, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.475, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.1045, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.41208762, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.4905, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.4175, shape=(), dtype=float32)
+TRAINING 8
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.39409092, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.318911, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7559091, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.39727274, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3101603, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.75954545, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.3927273, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3055022, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.75136364, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.004, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.685, shape=(), dtype=float32)
+TRAINING 9
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.1963158, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.28218746, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.74157894, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.20631579, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2775621, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7423684, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.20578948, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.27467468, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.74710524, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00041666668, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.711, shape=(), dtype=float32)
+TRAINING 10
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.3384375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.31763795, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.710625, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.333125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.31024256, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7253125, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.34, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.306113, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7328125, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0012500002, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.69375, shape=(), dtype=float32)
+TRAINING 11
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.21694444, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.31604692, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6755555, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22416666, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3119578, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6875, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.21194445, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30732623, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.69472224, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00034090912, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.65, shape=(), dtype=float32)
+TRAINING 12
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.25875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.33185267, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71875, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2671875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3255456, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7175, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2684375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.31819022, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7134375, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00022727273, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6925, shape=(), dtype=float32)
+TRAINING 13
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.18633333, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.33968124, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6343333, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.187, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.33369172, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6343333, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.17933333, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.32882592, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.644, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.61, shape=(), dtype=float32)
+TRAINING 14
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.195625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.52006453, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71125, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.211875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.5162228, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71875, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.209375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.51522416, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.73, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00055555557, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.705, shape=(), dtype=float32)
+TRAINING 15
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.22636363, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.31119066, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.79068184, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.23022728, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30846837, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7961364, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.225, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30613086, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7915909, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0021000002, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.731, shape=(), dtype=float32)
+EVALUATION FAILED UGH
+local variable 'mdl' referenced before assignment
+TRAINING 0
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.25096154, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.22841427, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7401923, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.25, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.22737011, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.74615383, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.25653845, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.22607838, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7544231, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00083333335, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.74666667, shape=(), dtype=float32)
+TRAINING 1
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.21944444, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.44506338, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7038889, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22777778, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4441358, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.69666666, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2211111, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.43388644, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.70444447, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00025, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6525, shape=(), dtype=float32)
+TRAINING 2
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.2615625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.26290882, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7309375, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2578125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25950652, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7421875, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.249375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2537037, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.75, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.76625, shape=(), dtype=float32)
+TRAINING 3
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.225, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2640728, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7361111, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22222222, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2618853, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7352778, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.22055556, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25952113, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7336111, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00028846157, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.7225, shape=(), dtype=float32)
+TRAINING 4
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.2663158, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.24481043, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.68526316, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2668421, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.24130516, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6910526, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2663158, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.23792382, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6960526, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00042857142, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.714, shape=(), dtype=float32)
+TRAINING 5
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.22066666, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.28679532, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.60866666, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.21066667, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.28170142, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6296667, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.22, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2780605, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.61766666, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.000952381, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.58666664, shape=(), dtype=float32)
+TRAINING 6
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.1065, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4050158, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.4955, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.1085, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.39555374, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.5145, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.1185, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.38901126, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.4945, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0006666667, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.4425, shape=(), dtype=float32)
+TRAINING 7
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.26227272, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.37736112, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6809091, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2390909, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3708392, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6768182, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.23772727, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3704053, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.66545457, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6025, shape=(), dtype=float32)
+TRAINING 8
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.39, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29347494, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.75636363, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.39363638, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29018742, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.76545453, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.39454547, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.28337842, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.75045455, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0085, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.6675, shape=(), dtype=float32)
+TRAINING 9
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.21375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.27119973, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.768, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2095, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.26936167, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.75675, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.222, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.26687065, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.75875, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00033333333, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.729, shape=(), dtype=float32)
+TRAINING 10
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.349375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29881233, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.735625, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.35125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29433385, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.738125, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.353125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2901351, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7465625, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0023863637, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.68, shape=(), dtype=float32)
+TRAINING 11
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.225, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30304992, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71055555, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.23194444, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3010797, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6969444, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.23, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2992439, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6983333, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00056818186, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.675, shape=(), dtype=float32)
+TRAINING 12
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.274375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.31416187, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7225, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2675, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30840987, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.729375, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2734375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.304708, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.725, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.72, shape=(), dtype=float32)
+TRAINING 13
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.1978125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.32238945, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6459375, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.193125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.318475, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6446875, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.1959375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.31619713, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6459375, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0003030303, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.595, shape=(), dtype=float32)
+TRAINING 14
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.209375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.50539804, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.743125, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.220625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.50165, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.736875, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.23125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4987681, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.740625, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00027777778, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.7175, shape=(), dtype=float32)
+TRAINING 15
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.22782609, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3044573, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7943478, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.23, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3036658, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7978261, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.21913044, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30289266, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7945652, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0022, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.757, shape=(), dtype=float32)
+EVALUATION FAILED UGH
+local variable 'mdl' referenced before assignment
+TRAINING 0
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.2596154, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.22560026, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.74596155, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.26807693, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.22424868, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.74538463, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2596154, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.22409621, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7528846, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.75916666, shape=(), dtype=float32)
+TRAINING 1
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.22, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.42549503, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.69166666, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4221159, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6816667, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.215, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.41746983, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.70055556, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.625, shape=(), dtype=float32)
+TRAINING 2
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.25875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25120524, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7428125, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2653125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.24773058, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7446875, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2653125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.24498263, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.741875, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.77125, shape=(), dtype=float32)
+TRAINING 3
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.22583333, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25729716, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.74666667, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22833334, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25532448, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.73694444, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.22888888, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25436157, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7413889, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00028846157, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.7325, shape=(), dtype=float32)
+TRAINING 4
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.27552631, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.23752762, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.69684213, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2668421, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.23552509, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7036842, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.275, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2333882, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.70526314, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00017857144, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.71, shape=(), dtype=float32)
+TRAINING 5
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.225, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.27156052, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.62333333, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22033334, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2678724, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.624, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.22166666, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.26342022, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.636, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0013095238, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.5883333, shape=(), dtype=float32)
+TRAINING 6
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.111, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.37706172, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.4985, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.1155, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.37249485, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.497, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.109, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.36505783, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.486, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0015, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.455, shape=(), dtype=float32)
+TRAINING 7
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.24909091, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.36093757, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.67545456, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.24545455, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3551638, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6736364, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.25545454, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3500903, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6695455, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00083333335, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.655, shape=(), dtype=float32)
+TRAINING 8
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.385, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.27525672, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.77, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.38590908, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.27298215, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7713636, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.3927273, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.26889896, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7713636, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.009166667, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.675, shape=(), dtype=float32)
+TRAINING 9
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.21526316, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.26576972, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.76078945, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22157894, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.26420504, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7626316, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.22763158, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.26235878, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.77026314, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.7125, shape=(), dtype=float32)
+TRAINING 10
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.3484375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.28784293, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7371875, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.3440625, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2837269, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7359375, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.3403125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2821029, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7465625, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00079545454, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.71875, shape=(), dtype=float32)
+TRAINING 11
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.2275, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2978378, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7127778, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.24361111, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29314816, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7136111, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.23, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2920711, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.73, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.67875, shape=(), dtype=float32)
+TRAINING 12
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.2735294, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3001519, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7364706, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.27588236, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29569808, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.74058825, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.27617648, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29329967, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.73294115, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00022727273, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.73, shape=(), dtype=float32)
+TRAINING 13
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.19125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.31281072, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6421875, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.1853125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.31055918, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6584375, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.184375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30785143, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6440625, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.62833333, shape=(), dtype=float32)
+TRAINING 14
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.228125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4949356, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.73, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2525, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.49019617, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.74625, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.241875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.48792115, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.755, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.755, shape=(), dtype=float32)
+TRAINING 15
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.2223913, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30286315, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7954348, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22434783, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30126807, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.8002174, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2302174, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29984695, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.8021739, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0023, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.75, shape=(), dtype=float32)
+EVALUATION FAILED UGH
+local variable 'mdl' referenced before assignment
+TRAINING 0
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.26, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.22361548, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7525, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.26846153, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.22258984, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7496154, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.26442307, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.22215578, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.75653845, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00041666668, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.7558333, shape=(), dtype=float32)
+TRAINING 1
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.21333334, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.41590154, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6894444, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22055556, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.40470582, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.69777775, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.22333333, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.39998212, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71055555, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00125, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.62, shape=(), dtype=float32)
+TRAINING 2
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.266875, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2422219, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.733125, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2603125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2399374, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.75125, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.2628125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.23811458, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.756875, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(8.928572e-05, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.77, shape=(), dtype=float32)
+TRAINING 3
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.22583333, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25307554, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7430556, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22444445, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25162333, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7475, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.23027778, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2502869, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7536111, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0005769231, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.74875, shape=(), dtype=float32)
+TRAINING 4
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.27131578, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.23182638, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71552634, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2742105, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.23032816, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.71105266, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.27552631, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.22885591, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7157895, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00089285715, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.72875, shape=(), dtype=float32)
+TRAINING 5
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.238, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2600865, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.653, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.23533334, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2580694, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6396667, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.234, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25571916, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6423333, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.63166666, shape=(), dtype=float32)
+TRAINING 6
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.1215, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.35774535, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.524, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.1405, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3479898, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.5325, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.1455, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3423594, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.5165, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0015, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.4675, shape=(), dtype=float32)
+TRAINING 7
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.25454545, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.343645, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.68136364, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.26545453, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.33965245, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6940909, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.27318183, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.33138487, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.6940909, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.65, shape=(), dtype=float32)
+TRAINING 8
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.39545456, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2614324, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.79318184, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.39227274, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25599134, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.77863634, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.4040909, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25203073, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.78227276, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0051666666, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.7225, shape=(), dtype=float32)
+TRAINING 9
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.22526316, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.26045984, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.77657896, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.23342106, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.25914568, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7718421, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.23736842, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2576099, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.78157896, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00010416667, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.72625, shape=(), dtype=float32)
+TRAINING 10
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.35375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.27877724, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7465625, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.3525, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2755181, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7465625, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.3453125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.27347314, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7703125, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00125, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.71375, shape=(), dtype=float32)
+TRAINING 11
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.23235294, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29135367, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.72205883, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.24323529, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2881182, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.72558826, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.23382352, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.28866267, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.73382354, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.000113636364, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.7225, shape=(), dtype=float32)
+TRAINING 12
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.28125, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29035428, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7446875, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.2934375, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2879105, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7503125, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.29, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.28567928, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.749375, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.73125, shape=(), dtype=float32)
+TRAINING 13
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.20366667, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30540842, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.65833336, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.213, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.3026311, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.661, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.21333334, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.30059585, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.663, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.675, shape=(), dtype=float32)
+TRAINING 14
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.23285714, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4840166, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.775, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.24928571, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.47359928, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7657143, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.24285714, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.4710336, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.75785714, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.00055555557, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.765, shape=(), dtype=float32)
+TRAINING 15
+STARTING TRANINING
+EPOCH 1 TRAIN ACC tf.Tensor(0.22717391, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.2985657, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.80673915, shape=(), dtype=float32)
+EPOCH 2 TRAIN ACC tf.Tensor(0.22869565, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29923525, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.80413043, shape=(), dtype=float32)
+EPOCH 3 TRAIN ACC tf.Tensor(0.22086957, shape=(), dtype=float32) TRAIN LOSS tf.Tensor(0.29889613, shape=(), dtype=float32) TRAIN TOP5 tf.Tensor(0.7995652, shape=(), dtype=float32)
+VAL METRIC accuracy RESULT tf.Tensor(0.0019000001, shape=(), dtype=float32)
+VAL METRIC top_k_categorical_accuracy RESULT tf.Tensor(0.756, shape=(), dtype=float32)
+EVALUATION FAILED UGH
+local variable 'mdl' referenced before assignment

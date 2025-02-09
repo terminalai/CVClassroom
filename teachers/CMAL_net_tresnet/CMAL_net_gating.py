@@ -1,7 +1,6 @@
 from .CMAL_net_class import CMALNetTeacher 
 from models.modelss import StanfordCarsGatingModel 
 from data_generation.stanford_cars_dataloader import StanfordCarsDataloader as SCDL 
-from data_generation.torch_stanford_cars_dataloader import get_dataloaders 
 
 import numpy as np 
 
@@ -22,6 +21,8 @@ class CMALNetGatingModel(CMALNetTeacher, StanfordCarsGatingModel):
 
 
 if __name__ == "__main__": 
+    from data_generation.torch_stanford_cars_dataloader import get_dataloaders 
+    
     teacher1 = CMALNetGatingModel() 
     teacher2 = CMALNetGatingModel() 
     traindl, testdl = get_dataloaders(batch_size=1, test_transforms = CMALNetGatingModel.test_transform) 

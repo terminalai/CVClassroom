@@ -14,7 +14,6 @@ for expert_num in range(1, 17):
 
 
 
-# testing - only testing syntax for now 
 tc = TrainingClassroom("./students/tcs/test_0", n_broad_labels=16) # to speed up the test 
 
 #new_class.train("./car_connection_dataset/cmalnet_softlabels_00.csv")
@@ -26,10 +25,10 @@ labelDF = pd.read_csv("./car_connection_dataset/cmalnet_softlabels_00.csv")
 
 tc.load_from_name("epoch_6.keras")
 
-epoch = 6
+epoch = 18
 #tc.save_to_name("epoch_{}.keras".format(epoch))
 while True: 
-    tc.train('./car_connection_dataset/cmalnet_softlabels_00.csv', lr=1e-5, num_epochs=6) 
+    tc.train('./car_connection_dataset/cmalnet_softlabels_00.csv', lr=1e-5, num_epochs=3) 
     tc.setup_to_train_again() 
 
     # test 
@@ -39,7 +38,7 @@ while True:
         print("EVALUATION FAILED UGH")
         print(e) 
 
-    epoch += 6
+    epoch += 3
     tc.save_to_name("epoch_{}.keras".format(epoch))
     
 

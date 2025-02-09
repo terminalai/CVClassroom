@@ -4,7 +4,6 @@ sys.path.insert(1, sys.path[0]+'/../../')
 import os 
 sys.path.insert(1, os.curdir)
 
-from data_generation.torch_stanford_cars_dataloader import get_dataloaders   
 
 from models import StanfordCarsTeacherModel 
 
@@ -287,8 +286,11 @@ class CMALNetTeacher(StanfordCarsTeacherModel):
 
 
 if __name__ == "__main__": 
+    from data_generation.torch_stanford_cars_dataloader import get_dataloaders   
+    
     teacher1 = CMALNetTeacher() 
     teacher2 = CMALNetTeacher() 
+
     traindl, testdl = get_dataloaders(batch_size=1, test_transforms = CMALNetTeacher.test_transform) 
     imgs, ans = next(iter(testdl)) 
     #print(imgs) 

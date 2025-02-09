@@ -1,3 +1,5 @@
+all_path_prefix = '' 
+
 import sys 
 sys.path.append("../CVClassroom")
 
@@ -26,7 +28,7 @@ default_augment_func = keras.Sequential([ RandAugment([0,255], **params.augment_
 
 
 # prepare this bcs need to preload 
-testLabels = scipy.io.loadmat('stanford_cars_dataset/cars_test_annos_withlabels (1).mat') 
+testLabels = scipy.io.loadmat(all_path_prefix+'stanford_cars_dataset/cars_test_annos_withlabels (1).mat') 
 
 
 # sampler for validation 
@@ -37,22 +39,22 @@ def default_valid_sampler(indices): # NOTE THAT THIS MUST RETURN THEM IN SORTED 
 class StanfordCarsDataloader(keras.utils.PyDataset):
 
     # initialize dataframes for data 
-    trainDF = pd.read_csv('stanford_cars_dataset/train.csv')
-    testDF = pd.read_csv('stanford_cars_dataset/test.csv')
+    trainDF = pd.read_csv(all_path_prefix+'stanford_cars_dataset/train.csv')
+    testDF = pd.read_csv(all_path_prefix+'stanford_cars_dataset/test.csv')
 
     # since testDF isn't complete, need to add more stuff 
     testDF['Class'] = [(testLabels['annotations'][0][i][-2][0][0]-1) for i in range(len(testDF)) ]
 
 
     # path prefixes
-    train_path_prefix = 'stanford_cars_dataset/cars_train/cars_train/' 
-    test_path_prefix = 'stanford_cars_dataset/cars_test/cars_test/'
+    train_path_prefix = all_path_prefix+'stanford_cars_dataset/cars_train/cars_train/' 
+    test_path_prefix = all_path_prefix+'stanford_cars_dataset/cars_test/cars_test/'
 
     # splitting of labels into sublabels 
     n_classes = 196 
     n_broad_labels = 16 
     ns_sub_labels = [14, 10, 14, 13, 14, 14, 15, 12, 15, 12, 11, 11, 11, 11, 9, 10] 
-    labelDF = pd.read_csv('stanford_cars_dataset/stanford_cars_labels.csv') # NOTE THAT THIS IS 1-INDEXED 
+    labelDF = pd.read_csv(all_path_prefix+'stanford_cars_dataset/stanford_cars_labels.csv') # NOTE THAT THIS IS 1-INDEXED 
 
     def labels_for_broad_label(broadlabel:int): # all these are 1-indexed 
         return list(StanfordCarsDataloader.labelDF[StanfordCarsDataloader.labelDF['broad_label'] == broadlabel]['label']) 
@@ -65,7 +67,7 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
         #return StanfordCarsDataloader.labelDF['label'][StanfordCarsDataloader.labelDF['broad_label'] == broad_label]['label'][StanfordCarsDataloader.labelDF['sub_label'] == sub_label]['label'] 
 
     label_csv_paths = {
-        0: 'stanford_cars_dataset/stanford_cars_labels.csv', 
+        0: all_path_prefix+'stanford_cars_dataset/stanford_cars_labels.csv', 
     }
 
     def switch_labelling_method(new_mtd): 
@@ -106,18 +108,18 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
         # set indices 
         if (self.mode == 'test'): 
             if self.broad_label_filter is not None : 
-                self.indices = StanfordCarsDataloader.testDF.index[
+                self.indices = list(StanfordCarsDataloader.testDF.index[
                     StanfordCarsDataloader.testDF['Class'] in StanfordCarsDataloader.labels_for_broad_label(self.broad_label_filter)
-                    ] 
+                    ]) 
             else: 
-                self.indices = StanfordCarsDataloader.testDF.index 
+                self.indices = list(StanfordCarsDataloader.testDF.index) 
         else: 
             if self.broad_label_filter is not None : 
                 t_indices = StanfordCarsDataloader.trainDF.index[
                     StanfordCarsDataloader.trainDF['Class'] in StanfordCarsDataloader.labels_for_broad_label(self.broad_label_filter)
                     ] 
             else: 
-                t_indices = StanfordCarsDataloader.trainDF.index 
+                t_indices = list(StanfordCarsDataloader.trainDF.index) 
             valid_indices = self.valid_sampler(t_indices) 
 
             #print("VALID INDICES:",valid_indices) 
@@ -154,27 +156,27 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
             if (self.mode == "train") or (self.mode=="valid"): 
                 x[i,] = img_to_array(load_img(
                     StanfordCarsDataloader.train_path_prefix +
-                    StanfordCarsDataloader.trainDF.image[i],
+                    StanfordCarsDataloader.trainDF.image[index],
                     target_size=self.data_shape, interpolation='bilinear'))
 
                 if self.finegrained:
-                    y1[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.trainDF.Class[i]]['broad_label'] - 1 
-                    if (not self.broad_labels_only): y2[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.trainDF.Class[i]]['sub_label'] - 1 
+                    y1[i] = StanfordCarsDataloader.labelDF.loc[int(StanfordCarsDataloader.trainDF.Class[index])]['broad_label'] - 1 
+                    if (not self.broad_labels_only): y2[i] = StanfordCarsDataloader.labelDF.loc[int(StanfordCarsDataloader.trainDF.Class[index])]['sub_label'] - 1 
                 else:
-                    y[i] = StanfordCarsDataloader.trainDF.Class[i] 
+                    y[i] = int(StanfordCarsDataloader.trainDF.Class[index]) 
 
 
             elif self.mode == "test": 
                 x[i,] = img_to_array(load_img(
                     StanfordCarsDataloader.test_path_prefix +
-                    StanfordCarsDataloader.testDF.image[i],
+                    StanfordCarsDataloader.testDF.image[index],
                     target_size=self.data_shape, interpolation='bilinear'))
                 
                 if self.finegrained:
-                    y1[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.testDF.Class[i]]['broad_label'] -1 
-                    if (not self.broad_labels_only): y2[i] = StanfordCarsDataloader.labelDF.loc[StanfordCarsDataloader.testDF.Class[i]]['sub_label'] -1 
+                    y1[i] = StanfordCarsDataloader.labelDF.loc[int(StanfordCarsDataloader.testDF.Class[index])]['broad_label'] -1 
+                    if (not self.broad_labels_only): y2[i] = StanfordCarsDataloader.labelDF.loc[int(StanfordCarsDataloader.testDF.Class[index])]['sub_label'] -1 
                 else:
-                    y[i] = StanfordCarsDataloader.testDF.Class[i] 
+                    y[i] = int(StanfordCarsDataloader.testDF.Class[index]) 
         
         if self.augment: 
             x = self.augment_func(x) 
