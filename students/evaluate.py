@@ -8,6 +8,7 @@ from training_classroom import TrainingClassroom
 from data_generation import StanfordCarsDataloader as SCDL
 
 import keras 
+import tensorflow as tf 
 import numpy as np
 
 import matplotlib.pyplot as plt 
@@ -18,6 +19,7 @@ top5_acc_metric = keras.metrics.TopKCategoricalAccuracy(k=5)
 
 tc = TrainingClassroom("./students/tcs/test_0", n_broad_labels=16) # to speed up the test 
 epochs = [0, 6, 12, 18, 21, 24, 27, 30, 33, 36, 39] 
+
 
 # evaluating on validation set: 
 print("EVALUATING ON VALIDATION SET") 
@@ -44,19 +46,19 @@ for epoch in epochs:
         #print("LOGITS", logits)
         top5_acc_metric.update_state(y_true, logits)
 
-    accuracy = acc_metric.result()
-    top5_acc = top5_acc_metric.result()
+    accuracy = float(tf.squeeze(acc_metric.result()).numpy()) 
+    top5_acc = float(tf.squeeze(top5_acc_metric.result()).numpy()) 
 
     print("EPOCH {} VALID ACC: {:.4f} , TOP5: {:.4f}".format(epoch, accuracy, top5_acc)) 
 
-    valid_accs[epoch] = accuracy
+    valid_accs[epoch] = accuracy 
     valid_top5_accs[epoch] = top5_acc 
     
     acc_metric.reset_state()
     top5_acc_metric.reset_state()
 
-print("valid_accs =", valid_accs)
-print("valid_top5_accs =", valid_top5_accs)
+print("valid_accs =", valid_accs) 
+print("valid_top5_accs =", valid_top5_accs) 
 
 
 
@@ -82,18 +84,18 @@ for epoch in epochs:
         acc_metric.update_state(y_true, logits)
         top5_acc_metric.update_state(y_true, logits)
 
-    accuracy = acc_metric.result()
-    top5_acc = top5_acc_metric.result()
+    accuracy = float(tf.squeeze(acc_metric.result()).numpy()) 
+    top5_acc = float(tf.squeeze(top5_acc_metric.result()).numpy()) 
 
     print("EPOCH {} TEST ACC: {:.4f} , TOP5: {:.4f}".format(epoch, accuracy, top5_acc)) 
 
-    test_accs[epoch] = accuracy.item() 
-    test_top5_accs[epoch] = top5_acc.item() 
+    test_accs[epoch] = accuracy 
+    test_top5_accs[epoch] = top5_acc 
     
     acc_metric.reset_state()
     top5_acc_metric.reset_state()
 
-print("test_accs =", test_accs)
+print("test_accs =", test_accs) 
 print("test_top5_accs =", test_top5_accs) 
 
 

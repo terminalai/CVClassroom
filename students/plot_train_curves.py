@@ -106,7 +106,7 @@ plt.plot(epochs, accs)
 plt.title("Graph of Train Top-1 Accuracy against Epoch")
 plt.xlabel("Epoch")
 plt.ylabel("Train Top-1 Accuracy")
-plt.savefig("./figures/train_acc.svg") 
+plt.savefig("./students/figures/train_acc.svg") 
 plt.show()
 
 
@@ -116,7 +116,7 @@ plt.plot(epochs, losses)
 plt.title("Graph of Train Loss against Epoch")
 plt.xlabel("Epoch")
 plt.ylabel("Train Loss")
-plt.savefig("./figures/train_loss.svg") 
+plt.savefig("./students/figures/train_loss.svg") 
 plt.show()
 
 
@@ -126,7 +126,7 @@ plt.plot(epochs, top5s)
 plt.title("Graph of Train Top-5 Accuracy against Epoch")
 plt.xlabel("Epoch")
 plt.ylabel("Train Top-5 Accuracy")
-plt.savefig("./figures/train_top5.svg") 
+plt.savefig("./students/figures/train_top5.svg") 
 plt.show() 
 
 

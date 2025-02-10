@@ -39,11 +39,11 @@ def default_valid_sampler(indices): # NOTE THAT THIS MUST RETURN THEM IN SORTED 
 class StanfordCarsDataloader(keras.utils.PyDataset):
 
     # initialize dataframes for data 
-    trainDF = pd.read_csv(all_path_prefix+'stanford_cars_dataset/train.csv')
+    trainDF = pd.read_csv(all_path_prefix+'stanford_cars_dataset/train.csv') # class is 1-indexed 
     testDF = pd.read_csv(all_path_prefix+'stanford_cars_dataset/test.csv')
 
     # since testDF isn't complete, need to add more stuff 
-    testDF['Class'] = [(testLabels['annotations'][0][i][-2][0][0]-1) for i in range(len(testDF)) ]
+    testDF['Class'] = [(testLabels['annotations'][0][i][-2][0][0]-1) for i in range(len(testDF)) ] # by taking testDF['Class'].describe(), we see that this is 0-indexed, unlike trainDF's one 
 
 
     # path prefixes
@@ -153,28 +153,28 @@ class StanfordCarsDataloader(keras.utils.PyDataset):
             y = np.empty(self.batch_size, dtype=int) # labels 
 
         for i, index in enumerate(indices): # NOTE: NOT self.indices BUT THE PARAMETER 
-            if (self.mode == "train") or (self.mode=="valid"): 
+            if (self.mode == "train") or (self.mode=="valid"): # as seen in notes above. trainDF.Class is 1-indexed, so i subtract 1 
                 x[i,] = img_to_array(load_img(
                     StanfordCarsDataloader.train_path_prefix +
                     StanfordCarsDataloader.trainDF.image[index],
                     target_size=self.data_shape, interpolation='bilinear'))
 
                 if self.finegrained:
-                    y1[i] = StanfordCarsDataloader.labelDF.loc[int(StanfordCarsDataloader.trainDF.Class[index])]['broad_label'] - 1 
-                    if (not self.broad_labels_only): y2[i] = StanfordCarsDataloader.labelDF.loc[int(StanfordCarsDataloader.trainDF.Class[index])]['sub_label'] - 1 
+                    y1[i] = StanfordCarsDataloader.labelDF.loc[int(StanfordCarsDataloader.trainDF.Class[index]-1), 'broad_label'] - 1 
+                    if (not self.broad_labels_only): y2[i] = StanfordCarsDataloader.labelDF.loc[int(StanfordCarsDataloader.trainDF.Class[index]-1), 'sub_label'] - 1 
                 else:
-                    y[i] = int(StanfordCarsDataloader.trainDF.Class[index]) 
+                    y[i] = int(StanfordCarsDataloader.trainDF.Class[index]-1) 
 
 
-            elif self.mode == "test": 
+            elif self.mode == "test": # while testDF.Class is 0-indexed, so i don't subtract 1 
                 x[i,] = img_to_array(load_img(
                     StanfordCarsDataloader.test_path_prefix +
                     StanfordCarsDataloader.testDF.image[index],
                     target_size=self.data_shape, interpolation='bilinear'))
                 
                 if self.finegrained:
-                    y1[i] = StanfordCarsDataloader.labelDF.loc[int(StanfordCarsDataloader.testDF.Class[index])]['broad_label'] -1 
-                    if (not self.broad_labels_only): y2[i] = StanfordCarsDataloader.labelDF.loc[int(StanfordCarsDataloader.testDF.Class[index])]['sub_label'] -1 
+                    y1[i] = StanfordCarsDataloader.labelDF.loc[int(StanfordCarsDataloader.testDF.Class[index]), 'broad_label'] -1 
+                    if (not self.broad_labels_only): y2[i] = StanfordCarsDataloader.labelDF.loc[int(StanfordCarsDataloader.testDF.Class[index]), 'sub_label'] -1 
                 else:
                     y[i] = int(StanfordCarsDataloader.testDF.Class[index]) 
         
